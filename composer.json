@@ -36,7 +36,7 @@
         "behat/mink-goutte-driver":             "@dev",
         "behat/mink-zombie-driver":             "@dev",
         "phpunit/phpunit":                      "3.7.*",
-        "atoum/atoum":                          "*",
+        "mageekguy/atoum":                      "master-dev",
         "phpunit/php-invoker":                  "dev-master",
         "sami/sami":                            "1.1.*@dev"
     },
