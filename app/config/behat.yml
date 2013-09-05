@@ -1,0 +1,40 @@
+default:
+    formatter:
+        name:                       pretty
+        parameters:
+            decorated:              true
+            verbose:                false
+            time:                   true
+            language:               en
+            output_path:            null
+            multiline_arguments:    true
+    extensions:
+        Behat\Symfony2Extension\Extension:
+            mink_driver: true
+            kernel:
+                env: test
+                debug: true
+        Behat\MinkExtension\Extension:
+            base_url: 'http://127.0.0.1/'
+            goutte: ~
+            selenium2: ~
+php-server:
+    formatter:
+        name:                       pretty
+        parameters:
+            decorated:              true
+            verbose:                false
+            time:                   true
+            language:               en
+            output_path:            null
+            multiline_arguments:    true
+    extensions:
+        Behat\Symfony2Extension\Extension:
+            mink_driver: true
+            kernel:
+                env: test
+                debug: true
+        Behat\MinkExtension\Extension:
+            base_url: 'http://127.0.0.1:8888/app_dev.php/'
+            goutte: ~
+            selenium2: ~

@@ -1,0 +1,4 @@
+rf_blog:
+    resource: "@RfBlogBundle/Resources/config/routing.yml"
+    prefix:   /
+

@@ -1,0 +1,7 @@
+parameters:
+#    rf_blog.example.class: Rf\BlogBundle\Example
+
+services:
+#    rf_blog.example:
+#        class: %rf_blog.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
