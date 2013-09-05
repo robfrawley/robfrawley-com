@@ -87,12 +87,6 @@ assetic:
                 - '%kernel.root_dir%/../component/jquery-ui/ui/jquery.ui.effect-blind.js'
                 - '%kernel.root_dir%/../component/jquery-ui/ui/jquery.ui.effect-pulsate.js'
                 - '%kernel.root_dir%/../component/jquery-ui/ui/jquery.ui.progressbar.js'
-        simanek_hugrid_js:
-            inputs:
-                - '%kernel.root_dir%/../component/heads-up-grid/headsupgrid/hugrid.js'
-        simanek_hugrid_css:
-            inputs:
-                - '%kernel.root_dir%/../component/heads-up-grid/headsupgrid/hugrid.css'
         smoothscroll_js:
             inputs:
                 - '%kernel.root_dir%/../component/jquery.smooth-scroll/jquery.smooth-scroll.js'
