@@ -36,7 +36,7 @@
         "behat/mink-goutte-driver":             "@dev",
         "behat/mink-zombie-driver":             "@dev",
         "phpunit/phpunit":                      "3.7.*",
-        "mageekguy/atoum":                      "master-dev",
+        "atoum/atoum":                          "master-dev",
         "phpunit/php-invoker":                  "dev-master",
         "sami/sami":                            "1.1.*@dev"
     },
@@ -104,6 +104,17 @@
                 "dist": {
                     "url":  "https://github.com/yui/yuicompressor/releases/download/v2.4.8/yuicompressor-2.4.8.zip",
                     "type": "zip"
+                }
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "atoum/atoum",
+                "version": "1.0.0",
+                "dist": {
+                    "url": "https://github.com/atoum/atoum/",
+                    "type": "git"
                 }
             }
         },
