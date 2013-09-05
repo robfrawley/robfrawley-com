@@ -2,6 +2,7 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: assetic.yml }
+    - { resource: rf.yml }
 
 framework:
     #esi:             ~
@@ -52,12 +53,3 @@ swiftmailer:
     username:  %mailer_user%
     password:  %mailer_password%
     spool:     { type: memory }
-
-rf_blog:
-
-    maintenance_mode:
-        enable: false
-        mode: all
-        bundles: []
-
-    html: ~

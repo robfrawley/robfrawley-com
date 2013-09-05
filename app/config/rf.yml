@@ -1,0 +1,14 @@
+rf_blog:
+
+    maintenance_mode:
+        enable: false
+        mode: all
+        bundles: []
+
+    html:
+        title_pre: ~
+        title_post: '[robfrawley.com]'
+        charset: UTF-8
+        lang: en
+
+    date_format: ~
