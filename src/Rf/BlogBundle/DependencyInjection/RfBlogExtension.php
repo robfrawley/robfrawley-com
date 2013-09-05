@@ -1,16 +1,22 @@
 <?php
+/*
+ * This file is part of the Rob Frawley application
+ *
+ * (c) Rob Frawley 2nd <rmf@robfrawley.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
 namespace Rf\BlogBundle\DependencyInjection;
 
-use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\ContainerBuilder,
+    Symfony\Component\DependencyInjection\Loader;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
-use Symfony\Component\DependencyInjection\Loader;
 
 /**
- * This is the class that loads and manages your bundle configuration
- *
- * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html}
+ * RfBlogExtension
  */
 class RfBlogExtension extends Extension
 {
@@ -20,9 +26,46 @@ class RfBlogExtension extends Extension
     public function load(array $configs, ContainerBuilder $container)
     {
         $configuration = new Configuration();
-        $config = $this->processConfiguration($configuration, $configs);
+        $config = $this->processConfiguration(
+            $configuration, 
+            $configs
+        );
 
-        $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $container->setParameter(
+            'rf.maintenance_mode.enable',
+            $config['maintenance_mode']['enable']
+        );
+        $container->setParameter(
+            'rf.maintenance_mode.mode',
+            $config['maintenance_mode']['mode']
+        );
+        $container->setParameter(
+            'rf.maintenance_mode.bundles',
+            $config['maintenance_mode']['bundles']
+        );
+        $container->setParameter(
+            'rf.html.title_pre',
+            $config['html']['title_pre']
+        );
+        $container->setParameter(
+            'rf.html.title_post',
+            $config['html']['title_post']
+        );
+        $container->setParameter(
+            'rf.html.lang',
+            $config['html']['lang']
+        );
+        $container->setParameter(
+            'rf.html.charset',
+            $config['html']['charset']
+        );
+
+        $loader = new Loader\YamlFileLoader(
+            $container, 
+            new FileLocator(__DIR__.'/../Resources/config')
+        );
+
+        $loader->load('config.yml');
         $loader->load('services.yml');
     }
 }

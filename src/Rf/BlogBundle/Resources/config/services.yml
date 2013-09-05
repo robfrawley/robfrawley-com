@@ -1,7 +1,23 @@
 parameters:
-#    rf_blog.example.class: Rf\BlogBundle\Example
+    rf.listener.maintenance.class: Rf\BlogBundle\Listener\Maintenance\MaintenanceListener
+    rf.config.class: Rf\BlogBundle\Utility\Config\YamlConfigContainer
+    rf.config.twig.class: Rf\BlogBundle\Templating\Extension\YamlConfigExtension
 
 services:
-#    rf_blog.example:
-#        class: %rf_blog.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
+    rf.listener.maintenance:
+        class:     "%rf.listener.maintenance.class%"
+        arguments: ["@service_container"]
+        tags:
+            - { name: kernel.event_listener, event: kernel.controller, method: queryMaintenanceState }
+
+    rf.config:
+        class:     "%rf.config.class%"
+        arguments: ["@service_container"]
+        tags:
+            - { name: config.yml }
+
+    rf.config.twig:
+        class:     "%rf.config.twig.class%"
+        arguments: ["@rf.config"]
+        tags:
+            - { name: twig.extension }

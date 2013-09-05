@@ -1,0 +1,1 @@
+Feature: Does the navigation and routing of the blog function properly?

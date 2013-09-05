@@ -1,10 +1,15 @@
+{% set currentRoute = app.request.attributes.get('_route') %}
 <!DOCTYPE html>
-<html>
+<html lang="{{ get_config('rf.html.lang') }}">
     <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+            <meta charset="{{ get_config('rf.html.charset') }}" />
+            <title>
+                {% block titlePre  %} {{ get_config('rf.html.title.pre') }}  {% endblock %}
+                {% block title     %} Home                                   {% endblock %}
+                {% block titlePost %} {{ get_config('rf.html.title.post') }} {% endblock %}
+            </title>
+            {% block stylesheets %}{% endblock %}
+            <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
         {% block body %}{% endblock %}

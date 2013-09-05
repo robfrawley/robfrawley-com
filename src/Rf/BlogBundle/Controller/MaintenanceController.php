@@ -12,10 +12,16 @@ namespace Rf\BlogBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class DefaultController extends Controller
+/**
+ * MaintenanceController
+ */
+class MaintenanceController extends Controller
 {
-    public function indexAction($name)
+    /**
+     * @return Response
+     */
+    public function displayMaintenanceAction()
     {
-        return $this->render('RfBlogBundle:Default:index.html.twig', array('name' => $name));
+        return $this->render('RfBlogBundle:Maintenance:down.html.twig');
     }
 }

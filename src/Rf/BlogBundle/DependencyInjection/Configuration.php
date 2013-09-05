@@ -1,4 +1,12 @@
 <?php
+/*
+ * This file is part of the Rob Frawley application
+ *
+ * (c) Rob Frawley 2nd <rmf@robfrawley.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
 namespace Rf\BlogBundle\DependencyInjection;
 
@@ -6,9 +14,7 @@ use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
 /**
- * This is the class that validates and merges configuration from your app/config files
- *
- * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html#cookbook-bundles-extension-config-class}
+ * Configuration
  */
 class Configuration implements ConfigurationInterface
 {
@@ -18,11 +24,55 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('rf_blog');
+        $rootNode    = $treeBuilder->root('rf_blog');
 
-        // Here you should define the parameters that are allowed to
-        // configure your bundle. See the documentation linked above for
-        // more information on that topic.
+        $rootNode
+            ->addDefaultsIfNotSet()
+            ->children()
+                ->arrayNode('maintenance_mode')
+                    ->children()
+                        ->booleanNode('enable')
+                            ->defaultFalse()
+                            ->info('Enables or disabled maintenance mode completly.')
+                            ->end()
+                        ->enumNode('mode')
+                            ->values(array('all', 'selection', null))
+                            ->info('Defines whether to apply maintenance mode globally, or based on selection')
+                            ->end()
+                        ->arrayNode('bundles')
+                            ->defaultValue([])
+                            ->info('List of all bundles to be disabled when enabled_selected is active')
+                            ->prototype('scalar')->end()
+                            ->end()
+                    ->end()
+                ->end()
+                ->arrayNode('html')
+                    ->children()
+                    ->scalarNode('title_pre')
+                        ->defaultValue('')
+                        ->info('This value is added to the beginning of the HTML title value.')
+                        ->end()
+                    ->scalarNode('title_post')
+                        ->defaultValue('Rob Frawley')
+                        ->info('This value is added to the end of the HTML title value.')
+                        ->end()
+                    ->scalarNode('charset')
+                        ->defaultValue('UTF-8')
+                        ->info('The defined HTML charset.')
+                        ->end()
+                    ->scalarNode('lang')
+                        ->defaultValue('en')
+                        ->info('This value is applied as the value of data-offset-top on bootstrap affix-ed elements.')
+                        ->end()
+                    ->end()
+                ->end()
+                ->scalarNode('date_format')
+                    ->defaultValue('D, M j @ G:i')
+                    ->info('The default date format passed to php\'s date function.')
+                    ->end()
+                ->end()
+            ->end()
+        ;
 
         return $treeBuilder;
     }
