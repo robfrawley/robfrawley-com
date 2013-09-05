@@ -34,5 +34,4 @@
 /web/api/
 *.DS_Store*
 composer.lock
-*.php
 *.css
