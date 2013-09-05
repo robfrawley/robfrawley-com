@@ -1,0 +1,112 @@
+# Assetic Configuration
+assetic:
+    debug:          %kernel.debug%
+    use_controller: false
+    bundles:        ['RfBlogBundle']
+    java:           /usr/bin/java
+    filters:
+        cssrewrite:     ~
+        less:
+            node:       /usr/bin/node
+            node_paths: ['/usr/lib/node_modules/','/usr/local/lib/node_modules/']
+            compress:   true
+            apply_to:   "\.less$"
+        cssembed:
+            jar:        '%kernel.root_dir%/../vendor/nzakas/cssembed/cssembed-0.4.5.jar'
+        closure:
+            jar:        '%kernel.root_dir%/../vendor/google/closure-compiler/compiler.jar'
+        yui_css:
+            jar:        '%kernel.root_dir%/../vendor/yui/yuicompressor/yuicompressor-2.4.8.jar'
+        yui_js:
+            jar:        '%kernel.root_dir%/../vendor/yui/yuicompressor/yuicompressor-2.4.8.jar'
+    assets:
+        scribe_less:
+            inputs:
+                - '%kernel.root_dir%/../src/Rf/BlogBundle/Resources/public/less/rf.less'
+            filters: [less,cssrewrite,yui_css]
+        font_awesome_css:
+            inputs:
+                - '%kernel.root_dir%/../component/font-awesome/css/font-awesome.css'
+            filters: [cssrewrite,yui_css]
+        font_awesome_ie7_css:
+            inputs:
+                - '%kernel.root_dir%/../component/font-awesome/css/font-awesome-ie7.css'
+            filters: [cssrewrite,yui_css]
+        font_awesome_font_otf:
+            inputs:
+                - '%kernel.root_dir%/../component/font-awesome/font/FontAwesome.otf'
+        font_awesome_font_eot:
+            inputs:
+                - '%kernel.root_dir%/../component/font-awesome/font/fontawesome-webfont.eot'
+        font_awesome_font_svg:
+            inputs:
+                - '%kernel.root_dir%/../component/font-awesome/font/fontawesome-webfont.svg'
+        font_awesome_font_ttf:
+            inputs:
+                - '%kernel.root_dir%/../component/font-awesome/font/fontawesome-webfont.ttf'
+        font_awesome_font_woff:
+            inputs:
+                - '%kernel.root_dir%/../component/font-awesome/font/fontawesome-webfont.woff'
+        jquery_js:
+            inputs:
+                - '%kernel.root_dir%/../component/jquery/jquery.js'
+        jquery_ui_js:
+            inputs:
+                - '%kernel.root_dir%/../component/jquery-ui/ui/jquery-ui.js'
+                - '%kernel.root_dir%/../component/jquery-ui/ui/jquery.ui.accordion.js'
+                - '%kernel.root_dir%/../component/jquery-ui/ui/jquery.ui.effect-bounce.js'
+                - '%kernel.root_dir%/../component/jquery-ui/ui/jquery.ui.effect-scale.js'
+                - '%kernel.root_dir%/../component/jquery-ui/ui/jquery.ui.resizable.js'
+                - '%kernel.root_dir%/../component/jquery-ui/ui/jquery.ui.autocomplete.js'
+                - '%kernel.root_dir%/../component/jquery-ui/ui/jquery.ui.effect-clip.js'
+                - '%kernel.root_dir%/../component/jquery-ui/ui/jquery.ui.effect-shake.js'
+                - '%kernel.root_dir%/../component/jquery-ui/ui/jquery.ui.selectable.js'
+                - '%kernel.root_dir%/../component/jquery-ui/ui/jquery.ui.button.js'
+                - '%kernel.root_dir%/../component/jquery-ui/ui/jquery.ui.effect-drop.js'
+                - '%kernel.root_dir%/../component/jquery-ui/ui/jquery.ui.effect-slide.js'
+                - '%kernel.root_dir%/../component/jquery-ui/ui/jquery.ui.slider.js'
+                - '%kernel.root_dir%/../component/jquery-ui/ui/jquery.ui.core.js'
+                - '%kernel.root_dir%/../component/jquery-ui/ui/jquery.ui.effect-explode.js'
+                - '%kernel.root_dir%/../component/jquery-ui/ui/jquery.ui.effect-transfer.js'
+                - '%kernel.root_dir%/../component/jquery-ui/ui/jquery.ui.sortable.js'
+                - '%kernel.root_dir%/../component/jquery-ui/ui/jquery.ui.datepicker.js'
+                - '%kernel.root_dir%/../component/jquery-ui/ui/jquery.ui.effect-fade.js'
+                - '%kernel.root_dir%/../component/jquery-ui/ui/jquery.ui.spinner.js'
+                - '%kernel.root_dir%/../component/jquery-ui/ui/jquery.ui.dialog.js'
+                - '%kernel.root_dir%/../component/jquery-ui/ui/jquery.ui.effect-fold.js'
+                - '%kernel.root_dir%/../component/jquery-ui/ui/jquery.ui.menu.js'
+                - '%kernel.root_dir%/../component/jquery-ui/ui/jquery.ui.tabs.js'
+                - '%kernel.root_dir%/../component/jquery-ui/ui/jquery.ui.draggable.js'
+                - '%kernel.root_dir%/../component/jquery-ui/ui/jquery.ui.effect-highlight.js'
+                - '%kernel.root_dir%/../component/jquery-ui/ui/jquery.ui.mouse.js'
+                - '%kernel.root_dir%/../component/jquery-ui/ui/jquery.ui.tooltip.js'
+                - '%kernel.root_dir%/../component/jquery-ui/ui/jquery.ui.droppable.js'
+                - '%kernel.root_dir%/../component/jquery-ui/ui/jquery.ui.effect.js'
+                - '%kernel.root_dir%/../component/jquery-ui/ui/jquery.ui.position.js'
+                - '%kernel.root_dir%/../component/jquery-ui/ui/jquery.ui.widget.js'
+                - '%kernel.root_dir%/../component/jquery-ui/ui/jquery.ui.effect-blind.js'
+                - '%kernel.root_dir%/../component/jquery-ui/ui/jquery.ui.effect-pulsate.js'
+                - '%kernel.root_dir%/../component/jquery-ui/ui/jquery.ui.progressbar.js'
+        simanek_hugrid_js:
+            inputs:
+                - '%kernel.root_dir%/../component/heads-up-grid/headsupgrid/hugrid.js'
+        simanek_hugrid_css:
+            inputs:
+                - '%kernel.root_dir%/../component/heads-up-grid/headsupgrid/hugrid.css'
+        smoothscroll_js:
+            inputs:
+                - '%kernel.root_dir%/../component/jquery.smooth-scroll/jquery.smooth-scroll.js'
+        bootstrap_js:
+            inputs:
+                - '%kernel.root_dir%/../component/bootstrap/js/transition.js'
+                - '%kernel.root_dir%/../component/bootstrap/js/alert.js'
+                - '%kernel.root_dir%/../component/bootstrap/js/modal.js'
+                - '%kernel.root_dir%/../component/bootstrap/js/dropdown.js'
+                - '%kernel.root_dir%/../component/bootstrap/js/scrollspy.js'
+                - '%kernel.root_dir%/../component/bootstrap/js/tab.js'
+                - '%kernel.root_dir%/../component/bootstrap/js/tooltip.js'
+                - '%kernel.root_dir%/../component/bootstrap/js/popover.js'
+                - '%kernel.root_dir%/../component/bootstrap/js/button.js'
+                - '%kernel.root_dir%/../component/bootstrap/js/collapse.js'
+                - '%kernel.root_dir%/../component/bootstrap/js/carousel.js'
+                - '%kernel.root_dir%/../component/bootstrap/js/affix.js'
