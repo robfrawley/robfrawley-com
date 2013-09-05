@@ -9,11 +9,12 @@ security:
     providers:
         in_memory:
             memory:
-                users: ~
 
     firewalls:
         dev:
             pattern:  ^/(_(profiler|wdt)|css|images|js)/
             security: false
+        anonymous:
+            anonymous: ~
 
     access_control: ~
