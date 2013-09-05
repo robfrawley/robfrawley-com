@@ -15,7 +15,7 @@ default:
                 env: test
                 debug: true
         Behat\MinkExtension\Extension:
-            base_url: 'http://127.0.0.1/'
+            base_url: 'http://robfrawley.local/'
             goutte: ~
             selenium2: ~
 php-server:

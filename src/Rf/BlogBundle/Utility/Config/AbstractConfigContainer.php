@@ -22,12 +22,12 @@ abstract class AbstractConfigContainer implements ContainerAwareInterface
     /**
      * @var ContainerInterface
      */
-    private $container;
+    protected $container;
 
     /**
      * @param $container ContainerInterface
      */
-    public function __construct(ContainerInterface $container)
+    public function __construct(ContainerInterface $container = null)
     {
         $this->setContainer($container);
     }

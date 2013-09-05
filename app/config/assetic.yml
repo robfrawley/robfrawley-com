@@ -20,7 +20,7 @@ assetic:
         yui_js:
             jar:        '%kernel.root_dir%/../vendor/yui/yuicompressor/yuicompressor-2.4.8.jar'
     assets:
-        scribe_less:
+        rf_less:
             inputs:
                 - '%kernel.root_dir%/../src/Rf/BlogBundle/Resources/public/less/rf.less'
             filters: [less,cssrewrite,yui_css]

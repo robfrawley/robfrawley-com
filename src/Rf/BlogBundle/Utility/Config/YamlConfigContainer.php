@@ -10,7 +10,6 @@
 
 namespace Rf\BlogBundle\Utility\Config;
 
-use Scribe\SharedBundle\Utility\ContainerAbstract;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 

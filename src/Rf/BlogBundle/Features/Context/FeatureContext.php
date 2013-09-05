@@ -59,7 +59,7 @@ class FeatureContext
     /**
      * @Then /^Container should have parameter "([^"]*)"$/
      */
-    public function containerShouldHaveParameter($config_key)
+    public function assertContainerHasParameter($config_key)
     {
         $container = $this->kernel->getContainer();
         $container->getParameter($config_key);
@@ -68,7 +68,7 @@ class FeatureContext
     /**
      * @Given /^The app kernel is available$/
      */
-    public function theAppKernelIsAvailable()
+    public function assertAppKernelIsAvailable()
     {
         if(! $this->kernel instanceof \AppKernel)
         {
@@ -79,7 +79,7 @@ class FeatureContext
     /**
      * @Given /^The container is available$/
      */
-    public function theContainerIsAvailable()
+    public function assertContainerIsAvailable()
     {
         if(! $this->kernel->getContainer() instanceof \appTestDebugProjectContainer)
         {

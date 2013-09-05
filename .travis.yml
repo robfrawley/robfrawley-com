@@ -16,5 +16,8 @@ before_script:
     - composer require --no-update symfony/symfony=$SYMFONY_VERSION
     - composer install --dev --prefer-source --no-interaction --no-progress
     - npm install -g bower
+    - bower update
+    - php -S localhost:8888 -t web/ &
+    - sleep 4
 
-script: bin/behat --config app/config/behat.yml --profile default @RfBlogBundle
+script: bin/behat --config app/config/behat.yml --profile php-server @RfBlogBundle

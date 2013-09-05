@@ -1,0 +1,54 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+
+    <!-- BLOCK: internal css stylesheets -->
+    {% block stylesheetsInternal %}
+
+        <!-- all shared css resources -->
+        {% stylesheets
+            output='assets/css/compiled.css'
+            '@rf_less'
+        %}
+            <link rel="stylesheet" href="{{ asset_url }}" />
+        {% endstylesheets %}
+
+        {% stylesheets
+            output='assets/css/font_awesome.css' 
+            '@font_awesome_css' 
+        %}
+            <link rel="stylesheet" href="{{ asset_url }}" />
+        {% endstylesheets %}
+
+        {% stylesheets
+            output='assets/css/font_awesome_ie7.css' 
+            '@font_awesome_ie7_css' 
+        %}
+            <!--[if IE 7]>
+                <link rel="stylesheet" href="{{ asset_url }}" />
+            <![endif]-->
+        {% endstylesheets %}
+
+        {% image '@font_awesome_font_otf'  output='assets/font/FontAwesome.otf' %}         {% endimage %}
+        {% image '@font_awesome_font_eot'  output='assets/font/fontawesome-webfont.eot' %} {% endimage %}
+        {% image '@font_awesome_font_svg'  output='assets/font/fontawesome-webfont.svg' %} {% endimage %}
+        {% image '@font_awesome_font_ttf'  output='assets/font/fontawesome-webfont.ttf' %} {% endimage %}
+        {% image '@font_awesome_font_woff' output='assets/font/fontawesome-webfont.woff' %}{% endimage %}
+
+    {% endblock %}
+
+{% endblock %}
+
+{% block javascripts %}
+
+    {% javascripts 
+        output='assets/js/compiled.js'
+        filter=''
+        '@jquery_js'
+        '@smoothscroll_js'
+        '@bootstrap_js'
+    %}
+        <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+
+{% endblock %}

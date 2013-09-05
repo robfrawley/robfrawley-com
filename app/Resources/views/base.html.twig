@@ -2,11 +2,18 @@
 <!DOCTYPE html>
 <html lang="{{ get_config('rf.html.lang') }}">
     <head>
+            <!-- force the latest ie rendering engine *or* cromeframe, if installed -->
+            <!--[if IE]>
+                <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+            <![endif]-->
             <meta charset="{{ get_config('rf.html.charset') }}" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <meta name="description" content="">
+            <meta name="author" content="Scribe Inc.">
             <title>
-                {% block titlePre  %} {{ get_config('rf.html.title.pre') }}  {% endblock %}
+                {% block titlePre  %} {{ get_config('rf.html.title_pre') }}  {% endblock %}
                 {% block title     %} Home                                   {% endblock %}
-                {% block titlePost %} {{ get_config('rf.html.title.post') }} {% endblock %}
+                {% block titlePost %} {{ get_config('rf.html.title_post') }} {% endblock %}
             </title>
             {% block stylesheets %}{% endblock %}
             <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
