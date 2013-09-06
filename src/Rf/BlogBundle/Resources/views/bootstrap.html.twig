@@ -2,30 +2,24 @@
 
 {% block stylesheets %}
 
-    <!-- BLOCK: internal css stylesheets -->
     {% block stylesheetsInternal %}
 
-        <!-- all shared css resources -->
         {% stylesheets
-            output='assets/css/compiled.css'
+            output='assets/css/compiled_all.css'
+            filter=''
             '@rf_less'
-        %}
-            <link rel="stylesheet" href="{{ asset_url }}" />
-        {% endstylesheets %}
-
-        {% stylesheets
-            output='assets/css/font_awesome.css' 
             '@font_awesome_css' 
         %}
             <link rel="stylesheet" href="{{ asset_url }}" />
         {% endstylesheets %}
 
         {% stylesheets
-            output='assets/css/font_awesome_ie7.css' 
+            output='assets/css/compiled_font-awesome-ie7.css'
+            filter=''
             '@font_awesome_ie7_css' 
         %}
             <!--[if IE 7]>
-                <link rel="stylesheet" href="{{ asset_url }}" />
+            <link rel="stylesheet" href="{{ asset_url }}" />
             <![endif]-->
         {% endstylesheets %}
 
@@ -42,7 +36,7 @@
 {% block javascripts %}
 
     {% javascripts 
-        output='assets/js/compiled.js'
+        output='assets/js/compiled_all.js'
         filter=''
         '@jquery_js'
         '@smoothscroll_js'
@@ -50,5 +44,16 @@
     %}
         <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
+
+    {% javascripts 
+        output='assets/js/compiled_ie.js'
+        filter=''
+        '@html5shiv_js'
+        '@respond_js' 
+    %}
+        <!--[if lt IE 9]>
+        <script src="{{ asset_url }}"></script>
+        <![endif]-->
+    {% endjavascripts  %}
 
 {% endblock %}

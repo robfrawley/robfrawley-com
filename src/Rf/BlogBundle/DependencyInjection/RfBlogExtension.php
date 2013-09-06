@@ -59,6 +59,18 @@ class RfBlogExtension extends Extension
             'rf.html.charset',
             $config['html']['charset']
         );
+        $container->setParameter(
+            'rf.date_format',
+            $config['date_format']
+        );
+        $container->setParameter(
+            'rf.brand_name',
+            $config['brand_name']
+        );
+        $container->setParameter(
+            'rf.brand_footer',
+            $config['brand_footer']
+        );
 
         $loader = new Loader\YamlFileLoader(
             $container, 

@@ -104,3 +104,9 @@ assetic:
                 - '%kernel.root_dir%/../component/bootstrap/js/collapse.js'
                 - '%kernel.root_dir%/../component/bootstrap/js/carousel.js'
                 - '%kernel.root_dir%/../component/bootstrap/js/affix.js'
+        respond_js:
+            inputs:
+                - '%kernel.root_dir%/../component/respond/respond.src.js'
+        html5shiv_js:
+            inputs:
+                - '%kernel.root_dir%/../component/html5shiv/src/html5shiv.js'
