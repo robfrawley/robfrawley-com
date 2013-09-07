@@ -1,0 +1,59 @@
+/*
+ * This file is part of the Rob Frawley application
+ *
+ * (c) Rob Frawley 2nd <rmf@robfrawley.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+// More mixins...
+// --------------------------------------------------
+
+.background-clip(@how) {
+    -moz-background-clip:@how;
+    -webkit-background-clip:@how;
+    background-clip:@how;
+}
+
+.background-origin(@where) {
+    -moz-background-origin:@where;
+    -webkit-background-origin:@where;
+    background-origin:@where;
+}
+
+.overflow(@how) {
+    overflow:@how !important;
+}
+
+.position(@where) {
+    position:@where !important;
+}
+
+.display(@how) {
+    display:@how !important;
+}
+
+.border-radius(@size:0px) {
+    .border-top-radius(@size);
+    .border-bottom-radius(@size);
+}
+
+.no-overflow (@type:clip) {
+    white-space:nowrap;
+    overflow:hidden;
+    o-text-overflow:@type;
+    text-overflow:@type;
+}
+
+.simple-gradient(@start:#fafafa, @stop:#e9e9e9, @start-where:0%, @stop-where:100%) {
+    background:@stop;
+    background:-moz-linear-gradient(top, @start @start-where, @stop @stop-where);
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(@start-where,@start), color-stop(@stop-where,@stop));
+    background:-webkit-linear-gradient(top, @start @start-where,@stop @stop-where);
+    background:-o-linear-gradient(top, @start @start-where,@stop @stop-where);
+    background:-ms-linear-gradient(top, @start @start-where,@stop @stop-where);
+    background:linear-gradient(top, @start @start-where,@stop @stop-where);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='@start', endColorstr='@stop');
+    -ms-filter:"progid:DXImageTransform.Microsoft.gradient(startColorstr='@start', endColorstr='@stop')";
+}

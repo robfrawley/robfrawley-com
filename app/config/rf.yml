@@ -12,3 +12,6 @@ rf_blog:
         lang: en
 
     date_format: ~
+
+    brand_name: Rob Frawley 2nd
+    brand_footer: '&copy; 2013 Rob Frawley 2nd'

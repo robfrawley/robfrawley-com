@@ -10,12 +10,23 @@
 
 namespace Rf\BlogBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
-class DefaultController extends Controller
+/**
+ * DefaultController
+ */
+class DefaultController extends AbstractController
 {
     public function indexAction()
     {
-        return $this->render('RfBlogBundle:Default:index.html.twig');
+        list($em) = $this->getServices(['em']);
+
+        $repository    = $em->getRepository('RfBlogBundle:Welcome');
+        $welcome       = $repository->findAll();
+        $welcome_count = count($welcome);
+        $welcome_i     = mt_rand(0, $welcome_count-1);
+
+        return $this->render(
+            'RfBlogBundle:Default:index.html.twig',
+            [ 'welcome' => $welcome[$welcome_i] ]
+        );
     }
 }

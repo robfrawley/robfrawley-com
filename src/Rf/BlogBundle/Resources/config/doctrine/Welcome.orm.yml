@@ -1,0 +1,24 @@
+Rf\BlogBundle\Entity\Welcome:
+    type: entity
+    table: null
+    repositoryClass: Rf\BlogBundle\Entity\WelcomeRepository
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        header:
+            type: string
+            length: '100'
+        body:
+            type: text
+        urlText:
+            type: string
+            length: '100'
+            nullable: true
+        urlHref:
+            type: string
+            length: '510'
+            nullable: true
+    lifecycleCallbacks: {  }

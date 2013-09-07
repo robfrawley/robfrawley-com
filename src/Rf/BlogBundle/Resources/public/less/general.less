@@ -1,5 +1,56 @@
-/* Move down content because we have a fixed navbar that is 50px tall */
+/*
+ * This file is part of the Rob Frawley application
+ *
+ * (c) Rob Frawley 2nd <rmf@robfrawley.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 body {
-  padding-top: 50px;
-  padding-bottom: 20px;
+    padding-top:50px;
+    padding-bottom:20px;
+}
+
+h1 {
+    color:#B4BBAA;
+}
+
+h2, h3, h4, h5, h6 {
+    color:#A77A84;
+}
+
+.jumbotron {
+    h1 {
+        color:#7C68A0;
+    }
+    .btn {
+        margin-top:15px;
+    }
+}
+
+.navbar-brand {
+    background-image:url(/bundles/rfblog/img/rf.png);
+    background-position:15px;
+    background-size:contain;
+    background-repeat:no-repeat;
+    opacity:0.8;
+    overflow:hidden;
+    width:100px;
+    .no-overflow;
+    &:hover,&:focus {
+        opacity:1;
+    }
+}
+
+.navbar-brand strong {
+    font-weight:normal;
+    opacity:0;
+}
+
+footer {
+    padding-top:30px;
+    margin-top:40px;
+    border-top:1px solid #262730;
+    opacity:0.75;
 }

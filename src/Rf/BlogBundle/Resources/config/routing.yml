@@ -1,3 +1,7 @@
 rf_blog_index:
     pattern:  /feature
     defaults: { _controller: RfBlogBundle:Default:index }
+
+rf_contact:
+    pattern: /converse
+    defaults: { _controller: RfBlogBundle:Default:contact }
