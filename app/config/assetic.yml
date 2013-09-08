@@ -24,6 +24,9 @@ assetic:
             inputs:
                 - '%kernel.root_dir%/../src/Rf/BlogBundle/Resources/public/less/rf.less'
             filters: [less,cssrewrite,yui_css]
+        rf_js:
+            inputs:
+                - '%kernel.root_dir%/../src/Rf/BlogBundle/Resources/public/js/main.js'
         font_awesome_css:
             inputs:
                 - '%kernel.root_dir%/../component/font-awesome/css/font-awesome.css'
