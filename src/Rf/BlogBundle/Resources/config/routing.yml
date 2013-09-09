@@ -10,9 +10,13 @@ rf_blog_list:
     pattern:  /blog/list
     defaults: { _controller: RfBlogBundle:Blog:list }
 
+rf_media_na_dl:
+    pattern:  /media/narcotics-anonymous/dl/{dirpath}
+    defaults: { _controller: RfBlogBundle:MediaBrowser:naDownload }
+
 rf_media_na:
-    pattern:  /media/narcotics-anonymous
-    defaults: { _controller: RfBlogBundle:MediaBrowser:na }
+    pattern:  /media/narcotics-anonymous/{dirpath}
+    defaults: { _controller: RfBlogBundle:MediaBrowser:na, dirpath: null }
 
 rf_contact:
     pattern: /contact
