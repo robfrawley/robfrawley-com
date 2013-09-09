@@ -45,23 +45,22 @@ class MediaBrowserController extends AbstractController
         $this->files = [];
         $this->dirs  = [];
 
-        if ($handle = opendir($root)) {
-            while (false !== ($entry = readdir($handle))) {
+        $dirscan = scandir($root, SCANDIR_SORT_ASCENDING);
+        foreach ($dirscan as $entry) {
 
-                if ($entry == '.' || $entry == '..' || $entry == 'exts.txt' || $entry == 'files.txt') continue;
+            if ($entry == '.' || $entry == '..' || $entry == 'exts.txt' || $entry == 'files.txt') continue;
 
-                $path = $root.DIRECTORY_SEPARATOR.$entry;
-                $safepath = str_replace($this->getRoot(), '', $path);
+            $path = $root.DIRECTORY_SEPARATOR.$entry;
+            $safepath = str_replace($this->getRoot(), '', $path);
 
-                if (substr($safepath, 0, 1) === DIRECTORY_SEPARATOR) {
-                    $safepath = substr($safepath, 1);
-                }
+            if (substr($safepath, 0, 1) === DIRECTORY_SEPARATOR) {
+                $safepath = substr($safepath, 1);
+            }
 
-                if (is_dir($path)) {
-                    $this->dirs[] = $safepath;
-                } elseif (is_file($path)) {
-                    $this->files[] = $safepath;
-                }
+            if (is_dir($path)) {
+                $this->dirs[] = $safepath;
+            } elseif (is_file($path)) {
+                $this->files[] = $safepath;
             }
         }
     }
