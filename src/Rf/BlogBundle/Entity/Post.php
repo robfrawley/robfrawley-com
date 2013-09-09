@@ -69,6 +69,16 @@ class Post
     }
 
     /**
+     * Get posted formatted
+     *
+     * @return string
+     */
+    public function getPostedFormatted($format = 'r')
+    {
+        return $this->posted->format($format);
+    }
+
+    /**
      * Set location
      *
      * @param string $location

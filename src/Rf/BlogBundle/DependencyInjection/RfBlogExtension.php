@@ -71,6 +71,10 @@ class RfBlogExtension extends Extension
             'rf.brand_footer',
             $config['brand_footer']
         );
+        $container->setParameter(
+            'rf.date_format',
+            $config['date_format']
+        );
 
         $loader = new Loader\YamlFileLoader(
             $container, 

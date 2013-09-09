@@ -11,7 +11,5 @@ rf_blog:
         charset: UTF-8
         lang: en
 
-    date_format: ~
-
     brand_name: Rob Frawley 2nd
     brand_footer: '&copy; 2013 Rob Frawley 2nd'

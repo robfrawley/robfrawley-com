@@ -13,6 +13,7 @@ namespace Rf\BlogBundle\Templating\Extension;
 use Symfony\Component\DependencyInjection\ContainerInterface,
     Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Rf\BlogBundle\Utility\Config\YamlConfigContainer;
+use Twig_SimpleFunction;
 
 /**
  * YamlConfigExtension
@@ -43,11 +44,7 @@ class YamlConfigExtension extends AbstractExtension
     public function getFunctions()
     {
         return [
-            'get_config' => new \Twig_Function_Method(
-                $this,
-                'getConfig',
-                ['is_safe' => ['html']]
-            )
+            new Twig_SimpleFunction('get_config', [$this, 'getConfig'], ['is_safe' => ['html']])
         ];
     }
 }

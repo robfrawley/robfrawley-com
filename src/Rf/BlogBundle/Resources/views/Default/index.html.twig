@@ -62,7 +62,7 @@
     <div class="jumbotron">
       <div class="container">
         <h1>{{ welcome.header }}</h1>
-        {{ welcome.body|raw }}
+        {{ welcome.body|swim }}
         <p><a class="btn btn-primary btn-lg">{{ welcome.urlText }} <span class="icon-arrow-right"></span></a></p>
       </div>
     </div>
@@ -72,9 +72,10 @@
             {% set posts_count = posts|length %}
             {% set posts_col_size = 12/posts_count %}
             {% for i, p in posts %}
-                <div class="col-lg-{{ posts_col_size }}">
+                <div class="col-lg-{{ posts_col_size }} blog-post-teaser">
                     <h2>{{ p.getTitle }}</h2>
-                    {{ p.getEntry|markdown }}
+                    <h4>{{ p.getPostedFormatted(get_config('rf.date_format')) }}</h4>
+                    {{ p.getEntry|swim }}
                     <p><a class="btn btn-info" href="#">Read more &raquo;</a></p>
                 </div>
             {% endfor %}
