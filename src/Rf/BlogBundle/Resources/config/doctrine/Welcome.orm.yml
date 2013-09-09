@@ -21,4 +21,7 @@ Rf\BlogBundle\Entity\Welcome:
             type: string
             length: '510'
             nullable: true
+        matcher:
+            type: string
+            length: '255'
     lifecycleCallbacks: {  }

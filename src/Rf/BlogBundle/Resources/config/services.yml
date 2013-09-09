@@ -2,6 +2,8 @@ parameters:
     rf.listener.maintenance.class: Rf\BlogBundle\Listener\Maintenance\MaintenanceListener
     rf.config.class: Rf\BlogBundle\Utility\Config\YamlConfigContainer
     rf.config.twig.class: Rf\BlogBundle\Templating\Extension\YamlConfigExtension
+    rf.welcome.class: Rf\BlogBundle\Utility\Welcome\WelcomeContainer
+    rf.welcome.twig.class: Rf\BlogBundle\Templating\Extension\WelcomeExtension
     scribe.parser.swim.class: Rf\BlogBundle\Utility\Parser\Swim\SwimParser
     scribe.parser.swim.twig.class: Rf\BlogBundle\Templating\Extension\SwimExtension
 
@@ -21,6 +23,18 @@ services:
     rf.config.twig:
         class:     "%rf.config.twig.class%"
         arguments: ["@rf.config"]
+        tags:
+            - { name: twig.extension }
+
+    rf.welcome:
+        class:     "%rf.welcome.class%"
+        arguments: ["@service_container"]
+        tags:
+            - { name: config.yml }
+
+    rf.welcome.twig:
+        class:     "%rf.welcome.twig.class%"
+        arguments: ["@rf.welcome"]
         tags:
             - { name: twig.extension }
 

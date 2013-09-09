@@ -44,6 +44,13 @@ class MediaBrowserController extends AbstractController
      */
     public function naAction()
     {
+        list($em, $request) = $this->getServices(['em', 'request']);
+
+        $route = $request->get('_route');
+
+        $welcome_repo  = $em->getRepository('RfBlogBundle:Welcome');
+        $welcome       = $welcome_repo->findOneForContext($route);
+
         $this->setRoot(__DIR__.'/../../../../app/data/na/');
 
         return $this->render(

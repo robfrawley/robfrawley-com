@@ -34,6 +34,10 @@ class Welcome
      */
     private $urlHref;
 
+    /**
+     * @var string
+     */
+    private $matcher;
 
     /**
      * Get id
@@ -135,5 +139,28 @@ class Welcome
     public function getUrlHref()
     {
         return $this->urlHref;
+    }
+
+    /**
+     * Set matcher
+     *
+     * @param string $matcher
+     * @return Welcome
+     */
+    public function setMatcher($matcher)
+    {
+        $this->matcher = $matcher;
+    
+        return $this;
+    }
+
+    /**
+     * Get matcher
+     *
+     * @return string 
+     */
+    public function getMatcher()
+    {
+        return $this->matcher;
     }
 }
