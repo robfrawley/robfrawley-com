@@ -22,7 +22,7 @@ use Swift_Message,
  */
 class SystemCommand extends ContainerAwareCommand
 {
-    private $saveRoot = '/Users/rmf/naarchive/';
+    private $saveRoot = '/tmp/naarchive/';
 
     private $files = [];
     private $exts  = [];
@@ -55,8 +55,8 @@ class SystemCommand extends ContainerAwareCommand
         $output->writeln('<info>Files:'.print_r($this->files).'</info>');
         $output->writeln('<info>Extensions:'.print_r($this->exts).'</info>');
 
-        file_put_contents($this->saveRoot.'files.txt', print_r($this->files));
-        file_put_contents($this->saveRoot.'exts.txt', print_r($this->exts));
+        file_put_contents($this->saveRoot.'files.txt', print_r($this->files, true));
+        file_put_contents($this->saveRoot.'exts.txt', print_r($this->exts, true));
     }
 
     private function readUrl($url, $where, OutputInterface $output, $l1 = false)

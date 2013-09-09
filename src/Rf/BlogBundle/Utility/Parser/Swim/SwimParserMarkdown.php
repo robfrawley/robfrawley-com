@@ -26,7 +26,7 @@ class SwimParserMarkdown extends SwimObserver implements ParserInterface, Contai
     public function render($string = null)
     {
         return $this
-            ->getContainer()
+            ->container
             ->get('kwattro_markdown')
             ->render($string, ['lax_html_blocks' => true], ['xhtml' => false], 'html')
         ;

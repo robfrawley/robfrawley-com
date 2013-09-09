@@ -1,0 +1,21 @@
+{% extends 'RfBlogBundle::bootstrap.html.twig' %}
+
+{% block body %}
+
+    {% include 'RfBlogBundle:Part:header.html.twig' with {'currentRoute': currentRoute} only %}
+
+    <div class="jumbotron">
+        <div class="container">
+            <h1></h1>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+
+        </div>
+    </div>
+
+    {% include 'RfBlogBundle:Part:footer.html.twig' only %}
+
+{% endblock %}

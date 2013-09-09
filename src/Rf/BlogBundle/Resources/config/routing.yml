@@ -2,6 +2,22 @@ rf_blog_index:
     pattern:  /feature
     defaults: { _controller: RfBlogBundle:Default:index }
 
+rf_blog_entry:
+    pattern:  /blog/{year}/{month}/{day}/{title}/{id}
+    defaults: { _controller: RfBlogBundle:Blog:view }
+
+rf_blog_list:
+    pattern:  /blog/list
+    defaults: { _controller: RfBlogBundle:Blog:list }
+
+rf_media_na:
+    pattern:  /media/narcotics-anonymous
+    defaults: { _controller: RfBlogBundle:MediaBrowser:na }
+
 rf_contact:
-    pattern: /converse
+    pattern: /contact
     defaults: { _controller: RfBlogBundle:Default:contact }
+
+rf_resume:
+    pattern: /resume
+    defaults: { _controller: RfBlogBundle:Default:resume }

@@ -3,6 +3,7 @@
 namespace Rf\BlogBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Rf\BlogBundle\Utility\Filters\String;
 
 /**
  * Post
@@ -122,6 +123,16 @@ class Post
     public function getTitle()
     {
         return $this->title;
+    }
+
+    /**
+     * Get title key
+     *
+     * @return string 
+     */
+    public function getTitleKey()
+    {
+        return String::alphanumericAndDashesOnly($this->title);
     }
 
     /**

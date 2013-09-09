@@ -1,70 +1,14 @@
 {% extends 'RfBlogBundle::bootstrap.html.twig' %}
 
 {% block body %}
-    <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="{{ path('rf_root') }}"><strong>{{ get_config('rf.brand_name') }}</strong></a>
-        </div>
-        <div class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#about">Blog</a></li>
-            <li><a href="#">Resume</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Media <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li><a href="#">Audio</a></li>
-                <li><a href="#">Video</a></li>
-                <li><a href="#">Photo</a></li>
-              </ul>
-            </li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Code <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li><a href="#">Philosophy</a></li>
-                <li><a href="#">Projects</a></li>
-              </ul>
-            </li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Social <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li>
-                    <a data-popup href="#">
-                        <span class="icon-fixed-width icon-twitter"> </span>
-                        Twitter
-                    </a>
-                </li>
-                <li>
-                    <a data-popup href="#">
-                        <span class="icon-fixed-width icon-facebook-sign"> </span>
-                        Facebook
-                    </a>
-                </li>
-                <li>
-                    <a data-popup href="http://profiles.google.com/robfrawley">
-                        <span class="icon-fixed-width icon-google-plus"> </span>
-                        Google+
-                    </a>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
+
+    {% include 'RfBlogBundle:Part:header.html.twig' with {'currentRoute': currentRoute} only %}
 
     <div class="jumbotron">
-      <div class="container">
-        <h1>{{ welcome.header }}</h1>
-        {{ welcome.body|swim }}
-        <p><a class="btn btn-primary btn-lg">{{ welcome.urlText }} <span class="icon-arrow-right"></span></a></p>
-      </div>
+        <div class="container">
+            <h1>{{ welcome.header }}</h1>
+            {{ welcome.body|swim }}
+        </div>
     </div>
 
     <div class="container">
@@ -76,13 +20,12 @@
                     <h2>{{ p.getTitle }}</h2>
                     <h4>{{ p.getPostedFormatted(get_config('rf.date_format')) }}</h4>
                     {{ p.getEntry|swim }}
-                    <p><a class="btn btn-info" href="#">Read more &raquo;</a></p>
+                    <p><a class="btn btn-info" href="{{ path('rf_blog_entry', {'year': p.getPostedFormatted('Y'), 'month': p.getPostedFormatted('m'), 'day': p.getPostedFormatted('d'), 'title': p.getTitleKey, 'id': p.getId}) }}">Read more &raquo;</a></p>
                 </div>
             {% endfor %}
-      </div>
+        </div>
+    </div>
 
-      <footer>
-        <p>{{ get_config('rf.brand_footer') }}</p>
-      </footer>
-    </div> <!-- /container -->
+    {% include 'RfBlogBundle:Part:footer.html.twig' only %}
+
 {% endblock %}

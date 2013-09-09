@@ -21,7 +21,7 @@ trait ContainerAwareTrait
     /**
      * @var null
      */
-    private $container = null;
+    protected $container = null;
 
     /**
      * @param ContainerInterface $container
@@ -29,10 +29,6 @@ trait ContainerAwareTrait
     public function __construct(ContainerInterface $container = null)
     {
         $this->setContainer($container);
-        $this->request = $container->get('request');
-        $this->router  = $container->get('router');
-        $this->em      = $container->get('doctrine.orm.entity_manager');
-        $this->session = $this->request->getSession();
     }
 
     /**

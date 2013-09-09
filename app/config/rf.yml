@@ -13,3 +13,5 @@ rf_blog:
 
     brand_name: Rob Frawley 2nd
     brand_footer: '&copy; 2013 Rob Frawley 2nd'
+
+    date_format: 'l, F j'

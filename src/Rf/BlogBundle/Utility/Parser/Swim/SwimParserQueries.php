@@ -27,7 +27,7 @@ class SwimParserQueries extends SwimObserver implements ParserInterface, Contain
     public function render($string = null)
     {
         $renderer = $this
-            ->getContainer()
+            ->container
             ->get('kwattro_markdown')
         ;
 
