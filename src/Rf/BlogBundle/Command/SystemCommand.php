@@ -22,10 +22,11 @@ use Swift_Message,
  */
 class SystemCommand extends ContainerAwareCommand
 {
-    private $saveRoot = '/tmp/naarchive/';
+    private $saveRoot = '/Users/rmf/naarchive/';
 
     private $files = [];
     private $exts  = [];
+    private $downloads = [];
 
     /**
      * @see Command
@@ -49,20 +50,24 @@ class SystemCommand extends ContainerAwareCommand
         $output->writeln('<info>Reading from '.$url.' with root directory '.$root.'</info>');
 
         $this->readUrl($url, [$root], $output, true);
+        $this->doFileDownloads();
 
         $output->writeln('<info>Files:'.print_r($this->files).'</info>');
         $output->writeln('<info>Extensions:'.print_r($this->exts).'</info>');
-	file_put_contents($this->saveRoot.'files.txt', print_r($this->files));
-	file_put_contents($this->saveRoot.'exts.txt', print_r($this->exts));
+
+        file_put_contents($this->saveRoot.'files.txt', print_r($this->files));
+        file_put_contents($this->saveRoot.'exts.txt', print_r($this->exts));
     }
 
     private function readUrl($url, $where, OutputInterface $output, $l1 = false)
     {
+$this->output = $output;
+
         if (! file_exists($this->saveRoot)) {
             mkdir($this->saveRoot, 0775, true);
         }
 
-        $progress = $this->getHelperSet()->get('progress');
+        //$progress = $this->getHelperSet()->get('progress');
 
         $root = urlencode(implode('/', $where));
         //$output->writeln('Reading '.$root);
@@ -96,8 +101,7 @@ class SystemCommand extends ContainerAwareCommand
         }
         
         if (count($matchesF[0]) > 0) {
-            $output->writeln('<info>Downloading files in: "'.implode('/', $where).'"</info>');
-            $progress->start($output, count($matchesF[0]));
+            $output->writeln('<info>Scanning files in: "'.implode('/', $where).'"</info>');
             for ($i = 0; $i < count($matchesF[0]); $i++) {
                 $filepath = $matchesF[1][$i];
                 $types    = explode(' ', $matchesF[2][$i]);
@@ -107,9 +111,9 @@ class SystemCommand extends ContainerAwareCommand
                     $newWhere[] = $file;
                     $this->getFile($filepath, $newWhere);
                 }
-                $progress->advance();
+                
             }
-            $progress->finish();
+            
         }
 
         if ($l1 === true) {
@@ -120,8 +124,7 @@ class SystemCommand extends ContainerAwareCommand
 
     private function makeDirectory($where)
     {
-        array_pop($where);
-        $dirpath = $this->saveRoot . implode(DIRECTORY_SEPARATOR, $where);
+        $dirpath = pathinfo($where, PATHINFO_DIRNAME);
         if (! file_exists($dirpath)) {
             mkdir($dirpath, 0775, true);
         }
@@ -129,15 +132,31 @@ class SystemCommand extends ContainerAwareCommand
 
     private function saveFile($where, $file)
     {
-        $this->makeDirectory($where);
-        file_put_contents($dirpath = $this->saveRoot . implode(DIRECTORY_SEPARATOR, $where), file_get_contents('http://narchive.magshare.net/'.$file));
-        $this->files[] = implode(DIRECTORY_SEPARATOR, $where);
-        $ext = pathinfo(implode(DIRECTORY_SEPARATOR, $where), PATHINFO_EXTENSION);
-        if (array_key_exists($ext, $this->exts)) {
-            $this->exts[$ext]++;
-        } else {
-            $this->exts[$ext] = 1;
+        //$this->makeDirectory($where);
+        $dirpath = $this->saveRoot . implode(DIRECTORY_SEPARATOR, $where);
+        //file_put_contents($dirpath = $this->saveRoot . implode(DIRECTORY_SEPARATOR, $where), file_get_contents('http://narchive.magshare.net/'.$file));
+        $this->downloadsTo[] = $dirpath;
+        $this->downloads[] = 'http://narchive.magshare.net/'.$file;
+    }
+
+    private function doFileDownloads()
+    {
+        $this->output->writeln('<info>Downloading '.count($this->downloads).' found files</info>');
+        $progress = $this->getHelperSet()->get('progress');
+        $progress->start($this->output, count($this->downloads));
+        for ($i = 0; $i < count($this->downloads); $i++) {
+            $this->makeDirectory($this->downloadsTo[$i]);
+            $this->files[] = $this->downloadsTo[$i];
+            $ext = pathinfo($this->downloadsTo[$i], PATHINFO_EXTENSION);
+            if (array_key_exists($ext, $this->exts)) {
+                $this->exts[$ext]++;
+            } else {
+                $this->exts[$ext] = 1;
+            }
+            file_put_contents($this->downloadsTo[$i], file_get_contents($this->downloads[$i]));
+            $progress->advance();
         }
+        $progress->finish();
     }
 
     private function getFile($file, $where = [])
