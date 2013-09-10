@@ -1,6 +1,7 @@
 <ol class="breadcrumb">
     {% set breadbuilder = '' %}
-    <li><a href="{{ path('rf_media_na', {'dirpath': ''}) }}">Root</a></li>
+    <li>Location</li>
+    <li><a href="{{ path('rf_media_na', {'dirpath': ''}) }}">Home</a></li>
     {% for i, b in bread %}
         {% set breadbuilder = breadbuilder~b~'|' %}
         <li><a href="{{ path('rf_media_na', {'dirpath': breadbuilder}) }}">{{ b }}</a></li>
@@ -11,14 +12,12 @@
     <table class="table table-condensed">
         <thead>
             <tr>
-                <th>#</th>
                 <th>File Name</th>
             </tr>
         </thead>
         <tbody>
             {% for i, f in files %}
             <tr>
-                <td>{{ i+1 }}</td>
                 <td><a href="{{ path('rf_media_na_dl', {'dirpath': path~'|'~f}) }}">{{ f }}</a></td>
             </tr>
             {% endfor %}
@@ -30,14 +29,12 @@
     <table class="table table-condensed">
         <thead>
             <tr>
-                <th>#</th>
                 <th>Directory Name</th>
             </tr>
         </thead>
         <tbody>
             {% for i, d in dirs %}
             <tr>
-                <td>{{ i+1 }}</td>
                 <td><a href="{{ path('rf_media_na', {'dirpath': path~'|'~d}) }}">{{ d }}</a></td>
             </tr>
             {% endfor %}
