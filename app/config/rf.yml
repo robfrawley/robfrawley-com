@@ -3,7 +3,7 @@ rf_blog:
     maintenance_mode:
         enable: false
         mode: all
-        bundles: []
+        bundles: ['RfBlogBundle']
 
     html:
         title_pre: ~
