@@ -1,5 +1,66 @@
-<div class="container">
-	<footer>
-		<p>{{ get_config('rf.brand_footer') }}</p>
-	</footer>
-</div>
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="copyright-info col-sm-6">
+                {{ get_config('rf.footer_copy')|swim }}
+                {{ get_config('rf.footer_credit')|swim }}
+            </div>
+            <div class="external-link-collection col-lg-6">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <span class="icon-link-block icon-tooltip" data-toggle="tooltip" data-title="Facebook">
+                            <a href="http://facebook.com/robfrawley">
+                                <i class="icon-facebook-sign icon-light icon-2x icon-fixed-width"></i>
+                                <span>Facebook</span>
+                            </a>
+                        </span>
+                        <span class="icon-link-block icon-tooltip" data-toggle="tooltip" data-title="Twitter">
+                            <a href="http://twitter.com/robfrawley">
+                                <i class="icon-twitter icon-light icon-2x icon-fixed-width"></i>
+                                <span>Twitter</span>
+                            </a>
+                        </span>
+                        <span class="icon-link-block icon-tooltip" data-toggle="tooltip" data-title="Google+">
+                            <a href="http://profiles.google.com/robfrawley">
+                                <i class="icon-google-plus icon-light icon-2x icon-fixed-width"></i>
+                                <span>Google+</span>
+                            </a>
+                        </span>
+                        <span class="icon-link-block icon-tooltip" data-toggle="tooltip" data-title="Foursquare">
+                            <a href="https://foursquare.com/robfrawley">
+                                <i class="icon-foursquare icon-light icon-2x icon-fixed-width"></i>
+                                <span>Foursquare</span>
+                            </a>
+                        </span>
+                    </div>
+                    <div class="col-sm-12">
+                        <span class="icon-link-block icon-tooltip" data-toggle="tooltip" data-title="Skype">
+                            <a href="http://myskype.info/rfrawley-scribe">
+                                <i class="icon-skype icon-light icon-2x icon-fixed-width"></i>
+                                <span>Skype</span>
+                            </a>
+                        </span>
+                        <span class="icon-link-block icon-tooltip" data-toggle="tooltip" data-title="Instagram">
+                            <a href="http://instagram.com/robfrawley">
+                                <i class="icon-instagram icon-light icon-2x icon-fixed-width"></i>
+                                <span>Instagram</span>
+                            </a>
+                        </span>
+                        <span class="icon-link-block icon-tooltip" data-toggle="tooltip" data-title="Youtube">
+                            <a href="http://www.youtube.com/channel/UC6nOvRpZ6Ph8Nfkf8Wgbbiw">
+                                <i class="icon-youtube icon-light icon-2x icon-fixed-width"></i>
+                                <span>YouTube</span>
+                            </a>
+                        </span>
+                        <span class="icon-link-block icon-tooltip" data-toggle="tooltip" data-title="Github">
+                            <a href="http://github.com/rfrawley">
+                                <i class="icon-github icon-light icon-2x icon-fixed-width"></i>
+                                <span>Github</span>
+                            </a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>

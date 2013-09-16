@@ -9,7 +9,7 @@
 
 body {
     padding-top:50px;
-    padding-bottom:20px;
+    padding-bottom:0px;
 }
 
 h1 {
@@ -25,7 +25,7 @@ h3 {
 }
 
 h4 {
-    color:#4D6980;
+    color:#535770;
 }
 
 h5, h6 {
@@ -75,8 +75,39 @@ h5, h6 {
 }
 
 footer {
-    padding-top:30px;
-    margin-top:40px;
-    border-top:1px solid #262730;
-    opacity:0.75;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    margin-top:80px;
+    opacity:0.8;
+    background-color:#1e1f23;
+    border-color:#060708;
+    background-image:url(/bundles/rfblog/img/rf-welcome-bg.png);
+    .external-link-collection {
+        text-align:right;
+        .icon-link-block {
+            background-color:#000;
+            opacity:0.4;
+            margin:10px 0 10px 10px;
+            display:inline-block;
+            &:hover, &:focus {
+                opacity:1;
+            }
+            a {
+                &:hover, &:focus {
+                    text-decoration:none;
+                }
+                padding:10px 6px 10px 14px;
+                display:block;
+                span {
+                    display:none;
+                }
+            }
+        }
+    }
+    .copyright-info {
+        margin-top:44px;
+        .a-external-icon {
+            display:none;
+        }
+    }
 }

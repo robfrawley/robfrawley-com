@@ -14,67 +14,33 @@ use Symfony\Component\DependencyInjection\ContainerBuilder,
     Symfony\Component\DependencyInjection\Loader;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
+use Symfony\Component\DependencyInjection\ContainerInterface,
+    Symfony\Component\DependencyInjection\ContainerAwareInterface;
+use Rf\BlogBundle\Utility\Container\ContainerAwareTrait;
 
 /**
  * RfBlogExtension
  */
-class RfBlogExtension extends Extension
+class RfBlogExtension extends Extension implements ContainerAwareInterface
 {
+    use ContainerAwareTrait {
+        __construct as __constructContainer;
+    }
+
     /**
      * {@inheritDoc}
      */
     public function load(array $configs, ContainerBuilder $container)
     {
+        $this->__constructContainer($container);
+
         $configuration = new Configuration();
         $config = $this->processConfiguration(
             $configuration, 
             $configs
         );
 
-        $container->setParameter(
-            'rf.maintenance_mode.enable',
-            $config['maintenance_mode']['enable']
-        );
-        $container->setParameter(
-            'rf.maintenance_mode.mode',
-            $config['maintenance_mode']['mode']
-        );
-        $container->setParameter(
-            'rf.maintenance_mode.bundles',
-            $config['maintenance_mode']['bundles']
-        );
-        $container->setParameter(
-            'rf.html.title_pre',
-            $config['html']['title_pre']
-        );
-        $container->setParameter(
-            'rf.html.title_post',
-            $config['html']['title_post']
-        );
-        $container->setParameter(
-            'rf.html.lang',
-            $config['html']['lang']
-        );
-        $container->setParameter(
-            'rf.html.charset',
-            $config['html']['charset']
-        );
-        $container->setParameter(
-            'rf.date_format',
-            $config['date_format']
-        );
-        $container->setParameter(
-            'rf.brand_name',
-            $config['brand_name']
-        );
-        $container->setParameter(
-            'rf.brand_footer',
-            $config['brand_footer']
-        );
-        $container->setParameter(
-            'rf.date_format',
-            $config['date_format']
-        );
+        $this->processConfigToParameter($config);
 
         $loader = new Loader\YamlFileLoader(
             $container, 
@@ -83,5 +49,47 @@ class RfBlogExtension extends Extension
 
         $loader->load('config.yml');
         $loader->load('services.yml');
+    }
+
+    /**
+     * @param $indices array
+     * @param $pre string
+     * @param $sep string
+     * @return string
+     */
+    private function buildConfigIndex(array $indices = [], $pre = 'rf', $sep = '.') 
+    {
+        $returnIndex = $pre;
+        for ($i = 0; $i < count($indices); $i++) {
+            if ($indices[$i] === '') continue;
+            $returnIndex .= $sep . $indices[$i];
+        }
+
+        return $returnIndex;
+    }
+
+    /**
+     * @param $config array
+     * @return $this
+     */
+    private function processConfigToParameter(array $config = [], $index = '')
+    {
+        foreach ($config as $key => $value) {
+            if (is_array($value)) {
+                $this->processConfigToParameter($value, $key);
+                continue;
+            }
+
+            $newIndex = $this->buildConfigIndex([$index, $key]);
+            $this
+                ->container
+                ->setParameter(
+                    $newIndex,
+                    $value
+                )
+            ;
+        }
+
+        return $this;
     }
 }

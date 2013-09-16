@@ -12,6 +12,7 @@ rf_blog:
         lang: en
 
     brand_name: Rob Frawley 2nd
-    brand_footer: '&copy; 2013 Rob Frawley 2nd'
+
+    footer_credit: 'Designed and maintained by {~a:http://inserr.at/ Inserrat Technologies}.'
 
     date_format: 'l, F j'

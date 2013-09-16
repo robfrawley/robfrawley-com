@@ -37,7 +37,7 @@ class SwimParserExternalLink extends SwimObserver implements ParserInterface, Co
                     $url = 'http://'.$url;
                 }
                 $title    = empty($nodeAMatches[3][$i]) ? $url : $nodeAMatches[3][$i];
-                $replace  = '<i class="icon-link a-external-icon"> </i><a class="a-external" href="'.$url.'">'.$title.'</a>';
+                $replace  = '<i class="icon-link a-external-icon"> </i><a class="a-external a-tooltip" data-toggle="tooltip" data-title="'.$title.': '.$url.'" href="'.$url.'">'.$title.'</a>';
 
                 $string = str_replace($original, $replace, $string);
             }
@@ -54,7 +54,7 @@ class SwimParserExternalLink extends SwimObserver implements ParserInterface, Co
                     $url = 'http://'.$url;
                 }
                 $title    = empty($nodeAMatches[3][$i]) ? $url : $nodeAMatches[3][$i];
-                $replace  = '<span data-popup="true"><i class="icon-external-link a-external-icon"> </i><a class="a-external" href="'.$url.'">'.$title.'</a></span>';
+                $replace  = '<span data-popup="true"><i class="icon-external-link a-external-icon"> </i><a class="a-external a-tooltip" data-toggle="tooltip" data-title="'.$title.': '.$url.'" href="'.$url.'">'.$title.'</a></span>';
 
                 $string = str_replace($original, $replace, $string);
             }
@@ -69,7 +69,7 @@ class SwimParserExternalLink extends SwimObserver implements ParserInterface, Co
                 $original = $nodeAMatches[0][$i];
                 $url      = $nodeAMatches[1][$i];
                 $title    = empty($nodeAMatches[3][$i]) ? $url : $nodeAMatches[3][$i];
-                $replace  = '<i class="icon-envelope-alt a-external-icon"> </i><a class="a-external" href="mailto:'.$url.'">'.$title.'</a>';
+                $replace  = '<i class="icon-envelope-alt a-external-icon"> </i><a class="a-external a-tooltip" data-toggle="tooltip" data-title="Email '.$title.'" href="mailto:'.$url.'">'.$title.'</a>';
 
                 $string = str_replace($original, $replace, $string);
             }

@@ -39,23 +39,59 @@ class SwimParser extends AbstractSubject implements ParserInterface, ContainerAw
     /**
      * @var array
      */
-    private $other = [];
+    private $config = ['ExcludeLevel', 'Paths', 'WikipediaLink', 'ExternalLink', 'InternalLink', 'Queries', 'ExcludeLevel', 'Markdown'];
+
+    /**
+     * @var array
+     */
+    private $parsers = [];
 
     /**
      * @param ContainerInterface $container
+     * @param array $config
      */
-    public function __construct(ContainerInterface $container = null)
+    public function __construct(ContainerInterface $container = null, array $config = null)
     {
         $this->__traitConstruct($container);
-        
-        $this->attach($excludeBlock = new SwimParserExcludeLevel($container));
-        $this->attach(new SwimParserWikipediaLink($container));
-        $this->attach(new SwimParserExternalLink($container));
-        $this->attach(new SwimParserInternalLink($container));
-        $this->attach(new SwimParserQueries($container));
-        $this->attach($excludeBlock, true);
+        $this->configure($config);
+        $this->setup();
+    }
 
-        $this->attach(new SwimParserMarkdown($container));
+    /**
+     * @param array $config
+     * @return $this
+     */
+    public function configure(array $config = null)
+    {
+        if ($config !== null) {
+            $this->config = (array)$config;
+        }
+
+        $this->setup(true);
+
+        return $this;
+    }
+
+    /**
+     * @param boolean $new
+     * @return $this
+     */
+    private function setup($new = false)
+    {
+        if ($new === true) {
+            $this->parsers = [];
+        }
+
+        foreach ($this->config as $i => $v) {
+            if (!array_key_exists($v, $this->parsers) || !$this->parsers[$v] instanceof ParserInterface) {
+                $obj = '\Rf\BlogBundle\Utility\Parser\Swim\SwimParser'.$v;
+                $this->parsers[$v] = new $obj($this->container);
+            }
+
+            $this->attach($this->parsers[$v], true);
+        }
+
+        return $this;
     }
 
     /**

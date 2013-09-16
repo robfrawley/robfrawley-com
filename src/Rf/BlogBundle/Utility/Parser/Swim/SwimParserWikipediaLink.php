@@ -33,8 +33,9 @@ class SwimParserWikipediaLink extends SwimObserver implements ParserInterface, C
 
                 $original = $nodeWikiMatches[0][$i];
                 $key      = $nodeWikiMatches[1][$i];
+                $url      = 'http://en.wikipedia.org/wiki/'.urlencode($key);
                 $title    = empty($nodeWikiMatches[3][$i]) ? $key : $nodeWikiMatches[3][$i];
-                $replace  = '<i class="icon-external-link a-external-icon"> </i><a class="a-external a-wikipedia" href="http://en.wikipedia.org/wiki/'.$key.'">'.$title.'</a>';
+                $replace  = '<i class="icon-external-link a-external-icon"> </i><a class="a-external a-wikipedia a-tooltip" data-toggle="tooltip" data-title="'.$title.': '.$url.'" href="'.$url.'">'.$title.'</a>';
 
                 $string = str_replace($original, $replace, $string);
             }
