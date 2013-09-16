@@ -57,4 +57,19 @@
         <![endif]-->
     {% endjavascripts  %}
 
+    <script type="text/javascript">
+
+        $(document).ready(function() {
+            $('.icon-tooltip    ').tooltip({
+                placement: 'top',
+                container: 'body'
+            });
+            $('.a-tooltip    ').tooltip({
+                placement: 'top',
+                container: 'body'
+            });
+        });
+
+    </script>
+
 {% endblock %}
