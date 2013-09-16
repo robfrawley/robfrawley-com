@@ -107,9 +107,11 @@ $this->output = $output;
                 $types    = explode(' ', $matchesF[2][$i]);
                 if (in_array('file', $types)) {
                     $file = $matchesF[3][$i];
-                    $newWhere = $where;
-                    $newWhere[] = $file;
-                    $this->getFile($filepath, $newWhere);
+		    if ($file !== 'Thumbs.db') {
+	                $newWhere = $where;
+        	        $newWhere[] = $file;
+                        $this->getFile($filepath, $newWhere);
+		    }
                 }
                 
             }
