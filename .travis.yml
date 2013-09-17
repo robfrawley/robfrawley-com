@@ -2,6 +2,10 @@ language: php
 
 php: [5.4, 5.5]
 
+env:
+    - COVERALLS_REPO_TOKEN=0C0teLiqbzLFctzoa2jk6fgGLy8s1sTWb
+    - COVERALLS_RUN_LOCALLY=true
+
 branches:
     only:
         - master
@@ -9,6 +13,7 @@ branches:
 before_script:
     - cp app/config/parameters.yml.dist app/config/parameters.yml
     - composer self-update
+    - composer require --no-update symfony/symfony=$SYMFONY_VERSION
     - composer install --dev --prefer-source --no-interaction --no-progress
     - npm install -g bower
     - bower update
