@@ -20,4 +20,7 @@ before_script:
     - php -S 127.0.0.1:8888 -t web/ &
     - sleep 4
 
-script: bin/behat --config app/config/behat.yml --profile php-server @RfBlogBundle
+script:
+    - bin/behat --config app/config/behat.yml --profile php-server @RfBlogBundle
+    - bin/phpspec run
+    - bin/coveralls --config app/config/coveralls.yml
