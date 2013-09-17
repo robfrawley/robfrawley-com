@@ -2,6 +2,9 @@ language: php
 
 php: [5.4, 5.5]
 
+env:
+    - SYMFONY_VERSION='2.3.4'
+
 branches:
     only:
         - master
@@ -9,6 +12,7 @@ branches:
 before_script:
     - cp app/config/parameters.yml.dist app/config/parameters.yml
     - composer self-update
+    - composer require --no-update symfony/symfony=$SYMFONY_VERSION
     - composer install --dev --prefer-source --no-interaction --no-progress
     - npm install -g bower
     - bower update
