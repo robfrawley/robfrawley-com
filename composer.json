@@ -1,33 +1,38 @@
 {
-    "name": "rfrawley/robfrawley.com",
-    "license": "MIT",
-    "type": "project",
-    "description": "The Symfony2 project that powers my personal website, robfrawley.com",
+    "name":         "robfrawley/robfrawley.com",
+    "license":      "MIT",
+    "type":         "project",
+    "description":  "The Symfony2 project that powers my personal website, robfrawley.com",
     "autoload": {
         "psr-0": { "": "src/" }
     },
     "require": {
         "php":                                  ">=5.4.0",
-        "symfony/symfony":                      "~2.3.4",
+        "symfony/symfony":                      ">=2.3.4,<2.4",
         "doctrine/orm":                         ">=2.2.3,<2.4-dev",
-        "doctrine/doctrine-bundle":             "1.2.*",
-        "twig/extensions":                      "1.0.*",
-        "symfony/assetic-bundle":               "2.3.*",
-        "symfony/swiftmailer-bundle":           "2.3.*",
-        "symfony/monolog-bundle":               "2.4.*",
-        "sensio/distribution-bundle":           "2.3.*",
-        "sensio/framework-extra-bundle":        "2.3.*",
-        "sensio/generator-bundle":              "2.3.*",
-        "incenteev/composer-parameter-handler": "~2.0",
-        "zendframework/zend-json":              "2.2.*",
+        "doctrine/doctrine-bundle":             ">=1.2,<2.0",
+        "twig/extensions":                      ">=1.0,<2.0",
+        "symfony/assetic-bundle":               ">=2.3,<2.4",
+        "leafo/lessphp":                        ">=0.4,<0.5",
+        "leafo/scssphp":                        "dev-master",
+        "leafo/scssphp-compass":                "dev-master",
+        "symfony/swiftmailer-bundle":           ">=2.3,<2.4",
+        "symfony/monolog-bundle":               ">=2.4,<2.5",
+        "sensio/distribution-bundle":           ">=2.3,<2.4",
+        "sensio/framework-extra-bundle":        ">=2.3,<2.4",
+        "sensio/generator-bundle":              ">=2.3,<2.4",
+        "incenteev/composer-parameter-handler": ">=2.0,<3.0",
+        "zendframework/zend-json":              ">=2.2,<3.0",
         "varspool/pygments-bundle":             "*@dev",
         "kwattro/markdown-bundle":              "*@dev",
+        "knplabs/github-api":                   "*@dev",
         "nzakas/cssembed":                      "0.4.5",
         "google/closure-compiler":              "1.0.0",
         "yui/yuicompressor":                    "2.4.8"
     },
     "require-dev": {
-        "behat/behat":                          "2.5.*",
+        "sami/sami":                            "~1.1@dev",
+        "behat/behat":                          ">=2.5,<2.6",
         "behat/symfony2-extension":             "*",
         "behat/mink":                           "*",
         "behat/mink-extension":                 "*",
@@ -35,11 +40,13 @@
         "behat/mink-selenium2-driver":          "*",
         "behat/mink-goutte-driver":             "@dev",
         "behat/mink-zombie-driver":             "@dev",
-        "phpunit/phpunit":                      "3.7.*",
+        "phpunit/phpunit":                      ">=3.7,<3.8",
+        "phpspec/phpspec":                      ">=2.0@dev",
+        "henrikbjorn/phpspec-code-coverage":    ">=1.0@dev",
+        "whatthejeff/nyancat-scoreboard":       ">=1.1",
+        "satooshi/php-coveralls":               "dev-master",
         "atoum/atoum":                          "dev-master",
-        "atoum/atoum-bundle":                   "dev-master",
-        "phpunit/php-invoker":                  "dev-master",
-        "sami/sami":                            "1.1.*@dev"
+        "atoum/atoum-bundle":                   "dev-master"
     },
     "scripts": {
         "post-install-cmd": [
@@ -58,20 +65,21 @@
         ]
     },
     "config": {
-        "bin-dir": "bin",
-        "github-oauth": {
-            "github.com": "71bb3f43d7e0e8245b586b3968518419505cc9c0"
+        "bin-dir":          "bin",
+        "github-oauth":     {
+            "github.com":   "71bb3f43d7e0e8245b586b3968518419505cc9c0"
         }
     },
     "minimum-stability": "stable",
     "extra": {
-        "symfony-app-dir": "app",
-        "symfony-web-dir": "web",
-        "incenteev-parameters": {
-            "file": "app/config/parameters.yml"
+        "symfony-app-dir":          "app",
+        "symfony-web-dir":          "web",
+        "symfony-assets-install":   "symlink",
+        "incenteev-parameters":     {
+            "file":                 "app/config/parameters.yml"
         },
-        "branch-alias": {
-            "dev-master": "2.3-dev"
+        "branch-alias":             {
+            "dev-master":           "2.3-dev"
         }
     },
     "repositories": [
@@ -121,7 +129,7 @@
         },
         {
             "type": "composer",
-            "url": "https://packages.zendframework.com/"
+            "url":  "https://packages.zendframework.com/"
         }
     ]
 }
