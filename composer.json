@@ -46,7 +46,8 @@
         "whatthejeff/nyancat-scoreboard":       ">=1.1",
         "satooshi/php-coveralls":               "dev-master",
         "atoum/atoum":                          "dev-master",
-        "atoum/atoum-bundle":                   "dev-master"
+        "atoum/atoum-bundle":                   "dev-master",
+        "guzzle/guzzle":                        "3.7.*@dev"
     },
     "scripts": {
         "post-install-cmd": [
