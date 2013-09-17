@@ -39,7 +39,16 @@ class SwimParser extends AbstractSubject implements ParserInterface, ContainerAw
     /**
      * @var array
      */
-    private $config = ['ExcludeLevel', 'Paths', 'WikipediaLink', 'ExternalLink', 'InternalLink', 'Queries', 'ExcludeLevel', 'Markdown'];
+    private $config = [
+        'ExcludeLevel', 
+        'Paths', 
+        'WikipediaLink', 
+        'ExternalLink', 
+        'InternalLink', 
+        'Queries', 
+        'ExcludeLevel', 
+        'Markdown',
+    ];
 
     /**
      * @var array
@@ -54,7 +63,6 @@ class SwimParser extends AbstractSubject implements ParserInterface, ContainerAw
     {
         $this->__traitConstruct($container);
         $this->configure($config);
-        $this->setup();
     }
 
     /**
@@ -84,7 +92,7 @@ class SwimParser extends AbstractSubject implements ParserInterface, ContainerAw
 
         foreach ($this->config as $i => $v) {
             if (!array_key_exists($v, $this->parsers) || !$this->parsers[$v] instanceof ParserInterface) {
-                $obj = '\Rf\BlogBundle\Utility\Parser\Swim\SwimParser'.$v;
+                $obj = __NAMESPACE__.'\SwimParser'.$v;
                 $this->parsers[$v] = new $obj($this->container);
             }
 
