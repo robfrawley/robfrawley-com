@@ -33,5 +33,4 @@
 /web/docs/
 /web/api/
 *.DS_Store*
-composer.lock
 *.css
