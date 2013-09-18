@@ -4,5 +4,18 @@ runtime: php
 api_version: 1
 
 handlers:
-- url: /.*
+- url: /favicon\.ico
+  static_files: web/favicon.ico
+  upload: web/favicon\.ico
+
+- url: /bundles
+  static_dir: web/bundles
+
+- url: /assets
+  static_dir: web/assets
+
+- url: /app_dev\.php.*
   script: web/app_dev.php
+
+- url: .*
+  script: web/app.php
