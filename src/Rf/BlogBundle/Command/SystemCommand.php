@@ -22,11 +22,11 @@ use Swift_Message,
  */
 class SystemCommand extends ContainerAwareCommand
 {
-    private $saveRoot = '/tmp/naarchive/';
+    protected $saveRoot = '/tmp/naarchive/';
 
-    private $files = [];
-    private $exts  = [];
-    private $downloads = [];
+    protected $files = [];
+    protected $exts  = [];
+    protected $downloads = [];
 
     /**
      * @see Command
@@ -59,18 +59,15 @@ class SystemCommand extends ContainerAwareCommand
         file_put_contents($this->saveRoot.'exts.txt', print_r($this->exts, true));
     }
 
-    private function readUrl($url, $where, OutputInterface $output, $l1 = false)
+    protected function readUrl($url, $where, OutputInterface $output, $l1 = false)
     {
-$this->output = $output;
+        $this->output = $output;
 
         if (! file_exists($this->saveRoot)) {
             mkdir($this->saveRoot, 0775, true);
         }
 
-        //$progress = $this->getHelperSet()->get('progress');
-
         $root = urlencode(implode('/', $where));
-        //$output->writeln('Reading '.$root);
 
         $content = file_get_contents($url.$root);
 
@@ -79,10 +76,6 @@ $this->output = $output;
 
         preg_match_all($patternD, $content, $matches);
         preg_match_all($patternF, $content, $matchesF);
-//        print_r($matchesF);
-        if ($l1 === true) {
-            //$progress->start($output, count($matches[0]));
-        }
 
         for ($i = 0; $i < count($matches[0]); $i++) {
             $filepath = $matches[1][$i];
@@ -93,11 +86,6 @@ $this->output = $output;
                 $newWhere[] = $dir;
                 $this->readUrl($url, $newWhere, $output, false);
             }
-
-            if ($l1 === true) {
-                //$progress->advance();
-            }
-
         }
         
         if (count($matchesF[0]) > 0) {
@@ -117,14 +105,9 @@ $this->output = $output;
             }
             
         }
-
-        if ($l1 === true) {
-            //$progress->finish();
-        }
-
     }
 
-    private function makeDirectory($where)
+    protected function makeDirectory($where)
     {
         $dirpath = pathinfo($where, PATHINFO_DIRNAME);
         if (! file_exists($dirpath)) {
@@ -132,7 +115,7 @@ $this->output = $output;
         }
     }
 
-    private function saveFile($where, $file)
+    protected function saveFile($where, $file)
     {
         //$this->makeDirectory($where);
         $dirpath = $this->saveRoot . implode(DIRECTORY_SEPARATOR, $where);
@@ -141,7 +124,7 @@ $this->output = $output;
         $this->downloads[] = 'http://narchive.magshare.net/'.$file;
     }
 
-    private function doFileDownloads()
+    protected function doFileDownloads()
     {
         $this->output->writeln('<info>Downloading '.count($this->downloads).' found files</info>');
         $progress = $this->getHelperSet()->get('progress');
@@ -161,13 +144,13 @@ $this->output = $output;
         $progress->finish();
     }
 
-    private function getFile($file, $where = [])
+    protected function getFile($file, $where = [])
     {
         $where = $this->whereClean($where);
         $this->saveFile($where, $file);
     }
 
-    private function whereClean($where = [])
+    protected function whereClean($where = [])
     {
         array_shift($where);
 

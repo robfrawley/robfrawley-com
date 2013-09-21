@@ -43,8 +43,7 @@ class SwimParser extends AbstractSubject implements ParserInterface, ContainerAw
         'ExcludeLevel', 
         'Paths', 
         'WikipediaLink', 
-        'ExternalLink', 
-        'InternalLink', 
+        'ExternalLink',
         'Queries', 
         'ExcludeLevel', 
         'Markdown',
@@ -69,13 +68,13 @@ class SwimParser extends AbstractSubject implements ParserInterface, ContainerAw
      * @param array $config
      * @return $this
      */
-    public function configure(array $config = null)
+    public function configure(array $config = null, $new = true)
     {
         if ($config !== null) {
             $this->config = (array)$config;
         }
 
-        $this->setup(true);
+        $this->setup($new);
 
         return $this;
     }

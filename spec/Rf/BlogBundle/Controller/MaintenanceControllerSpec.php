@@ -15,10 +15,8 @@ class MaintenanceControllerSpec extends ObjectBehavior
         $this->shouldHaveType('Rf\BlogBundle\Controller\MaintenanceController');
     }
 
-	function let(
-		ContainerInterface $container,
-        EngineInterface $templating
-    ) {
+	function let(ContainerInterface $container, EngineInterface $templating)
+    {
         $container
         	->get('templating')
         	->willReturn($templating)
@@ -27,10 +25,8 @@ class MaintenanceControllerSpec extends ObjectBehavior
         $this->setContainer($container);
     }
 
-    function it_should_respond_to_display_maintenance_action(
-    	EngineInterface $templating,
-        Response $mockResponse
-    ) {
+    function it_should_respond_to_display_maintenance_action(EngineInterface $templating, Response $mockResponse) 
+    {
 		$templating
             ->renderResponse(
                 'RfBlogBundle:Maintenance:down.html.twig',
@@ -41,7 +37,6 @@ class MaintenanceControllerSpec extends ObjectBehavior
         ;
 
     	$response = $this->displayMaintenanceAction();
-
     	$response->shouldHaveType(
     		'Symfony\Component\HttpFoundation\Response'
     	);

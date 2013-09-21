@@ -2,8 +2,9 @@
 
 namespace spec\Rf\BlogBundle\Templating\Extension;
 
-use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
+use PhpSpec\ObjectBehavior,
+    Prophecy\Argument;
+use Rf\BlogBundle\Utility\Config\YamlConfigContainer;
 
 class YamlConfigExtensionSpec extends ObjectBehavior
 {
@@ -12,9 +13,8 @@ class YamlConfigExtensionSpec extends ObjectBehavior
         $this->shouldHaveType('Rf\BlogBundle\Templating\Extension\YamlConfigExtension');
     }
 
-    function let($config)
-    {
-        $config->beADoubleOf('\Rf\BlogBundle\Utility\Config\YamlConfigContainer');
+    function let(YamlConfigContainer $config)
+    {   
         $this->beConstructedWith($config);
     }
 

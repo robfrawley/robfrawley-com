@@ -40,6 +40,8 @@ class WelcomeContainer
         $welcome       = $welcome_repo->findOneForContext($route);
 
         $this->welcome = $welcome;
+
+        return $this;
     }
 
     /**

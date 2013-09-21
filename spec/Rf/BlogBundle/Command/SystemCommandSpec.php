@@ -4,6 +4,8 @@ namespace spec\Rf\BlogBundle\Command;
 
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
+use Symfony\Component\Console\Input\InputInterface,
+	Symfony\Component\Console\Output\OutputInterface;
 
 class SystemCommandSpec extends ObjectBehavior
 {

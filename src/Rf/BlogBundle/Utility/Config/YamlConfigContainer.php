@@ -10,8 +10,9 @@
 
 namespace Rf\BlogBundle\Utility\Config;
 
-use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\DependencyInjection\ContainerAwareInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface,
+    Symfony\Component\DependencyInjection\ContainerAwareInterface;
+use Exception;
 
 /**
  * YamlConfigContainer
