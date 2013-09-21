@@ -17,4 +17,20 @@ class YamlConfigExtensionSpec extends ObjectBehavior
         $config->beADoubleOf('\Rf\BlogBundle\Utility\Config\YamlConfigContainer');
         $this->beConstructedWith($config);
     }
+
+    function it_can_get_config()
+    {
+    	$this
+    		->getConfig('key')
+    		->shouldReturn(null)
+    	;
+    }
+
+    function it_can_return_function_array()
+    {
+    	$this
+    		->getFunctions()
+    		->shouldBeArray()
+    	;
+    }
 }

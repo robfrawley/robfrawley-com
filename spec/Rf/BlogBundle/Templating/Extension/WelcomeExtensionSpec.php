@@ -11,4 +11,12 @@ class WelcomeExtensionSpec extends ObjectBehavior
     {
         $this->shouldHaveType('Rf\BlogBundle\Templating\Extension\WelcomeExtension');
     }
+
+    function it_can_return_function_array()
+    {
+    	$this
+    		->getFunctions()
+    		->shouldBeArray()
+    	;
+    }
 }

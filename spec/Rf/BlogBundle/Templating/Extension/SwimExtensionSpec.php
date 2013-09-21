@@ -11,4 +11,12 @@ class SwimExtensionSpec extends ObjectBehavior
     {
         $this->shouldHaveType('Rf\BlogBundle\Templating\Extension\SwimExtension');
     }
+
+    function it_can_return_function_array()
+    {
+    	$this
+    		->getFunctions()
+    		->shouldBeArray()
+    	;
+    }
 }
