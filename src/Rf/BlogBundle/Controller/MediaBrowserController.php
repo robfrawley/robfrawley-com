@@ -41,7 +41,7 @@ class MediaBrowserController extends AbstractController
 
     public function scanDir()
     {
-        return scandir($this->getRoot(), SCANDIR_SORT_ASCENDING);
+        return @scandir($this->getRoot(), SCANDIR_SORT_ASCENDING);
     }
 
     /**
@@ -90,8 +90,11 @@ class MediaBrowserController extends AbstractController
         $this->dirs  = [];
 
         $dirscan = $this->scanDir();
-        var_dump($dirscan);
         
+        if (!is_array($dirscan) || !count($dirscan) > 0) {
+            return;
+        }
+
         foreach ($dirscan as $entry) {
 
             if ($entry == '.' || $entry == '..' || $entry == 'exts.txt' || $entry == 'files.txt') continue;

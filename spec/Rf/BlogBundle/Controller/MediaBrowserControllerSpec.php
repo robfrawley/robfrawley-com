@@ -30,25 +30,21 @@ class MediaBrowserControllerSpec extends ObjectBehavior
     	EngineInterface $templating,
         Response $mockResponse
     ) {
-        //$obj = $this->getWrappedObject();
-        //$obj->getRoot()->willReturn('dir/path');
-        //$obj->scanDir()->willReturn(['file1', 'file2']);
-
 		$templating
             ->renderResponse(
                 'RfBlogBundle:MediaBrowser:na.html.twig',
                 array(
-                	'dirs' => array('dir1', 'dir2'),
-                	'files' => array('file1', 'file2'),
-                	'path' => 'dir/path',
-                	'bread' => array('bread1', 'bread2')
+                	'dirs' => array(),
+                	'files' => array(),
+                	'path' => '',
+                	'bread' => array()
                 ),
                 null
             )
             ->willReturn($mockResponse)
         ;
 
-    	$response = $this->naAction('dir/path');
+    	$response = $this->naAction('');
 
     	$response->shouldHaveType(
     		'Symfony\Component\HttpFoundation\Response'
