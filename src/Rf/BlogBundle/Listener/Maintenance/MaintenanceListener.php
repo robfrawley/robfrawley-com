@@ -137,7 +137,7 @@ class MaintenanceListener implements ContainerAwareInterface
     /**
      * @param $event FilterControllerEvent
      */
-    private function handleMaintenanceController(FilterControllerEvent $event)
+    protected function handleMaintenanceController(FilterControllerEvent $event)
     {
         $event->stopPropagation();
 

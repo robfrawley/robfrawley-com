@@ -46,4 +46,19 @@ class SwimParserSpec extends ObjectBehavior
     	;
     }
 
+    /*function it_can_parse_content()
+    {
+    	$this
+    		->setContent('content')
+    		->shouldReturn($this)
+    	;
+    	$this
+    		->configure(['Paths'])
+    		->shouldReturn($this)
+    	;
+    	$this
+    		->render()
+    		->shouldReturn('content')
+    	;
+    }*/
 }

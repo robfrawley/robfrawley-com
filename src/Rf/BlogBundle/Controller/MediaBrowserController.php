@@ -39,30 +39,9 @@ class MediaBrowserController extends AbstractController
         return $this->root;
     }
 
-    public function exploreRoot()
+    public function scanDir()
     {
-        $root = $this->getRoot();
-        $this->files = [];
-        $this->dirs  = [];
-
-        $dirscan = scandir($root, SCANDIR_SORT_ASCENDING);
-        foreach ($dirscan as $entry) {
-
-            if ($entry == '.' || $entry == '..' || $entry == 'exts.txt' || $entry == 'files.txt') continue;
-
-            $path = $root.DIRECTORY_SEPARATOR.$entry;
-            $safepath = str_replace($this->getRoot(), '', $path);
-
-            if (substr($safepath, 0, 1) === DIRECTORY_SEPARATOR) {
-                $safepath = substr($safepath, 1);
-            }
-
-            if (is_dir($path)) {
-                $this->dirs[] = $safepath;
-            } elseif (is_file($path)) {
-                $this->files[] = $safepath;
-            }
-        }
+        return scandir($this->getRoot(), SCANDIR_SORT_ASCENDING);
     }
 
     /**
@@ -102,5 +81,33 @@ class MediaBrowserController extends AbstractController
         $webRoot = str_ireplace('//', '/', $webRoot);
 
         return $this->redirect('http://robfrawley.com'.$webRoot);
+    }
+
+    public function exploreRoot()
+    {
+        $root = $this->getRoot();
+        $this->files = [];
+        $this->dirs  = [];
+
+        $dirscan = $this->scanDir();
+        var_dump($dirscan);
+        
+        foreach ($dirscan as $entry) {
+
+            if ($entry == '.' || $entry == '..' || $entry == 'exts.txt' || $entry == 'files.txt') continue;
+
+            $path = $root.DIRECTORY_SEPARATOR.$entry;
+            $safepath = str_replace($this->getRoot(), '', $path);
+
+            if (substr($safepath, 0, 1) === DIRECTORY_SEPARATOR) {
+                $safepath = substr($safepath, 1);
+            }
+
+            if (is_dir($path)) {
+                $this->dirs[] = $safepath;
+            } elseif (is_file($path)) {
+                $this->files[] = $safepath;
+            }
+        }
     }
 }
