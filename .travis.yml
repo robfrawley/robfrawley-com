@@ -2,6 +2,9 @@ language: php
 
 php: [5.4, 5.5]
 
+env:
+    - COVERALLS_REPO_TOKEN= COVERALLS_RUN_LOCALLY=true
+
 branches:
     only:
         - master
