@@ -132,7 +132,7 @@ class Post
      */
     public function getTitleKey()
     {
-        return String::alphanumericAndDashesOnly($this->title);
+        return String::toAlphanumericAndDashes($this->title);
     }
 
     /**

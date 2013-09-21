@@ -36,15 +36,26 @@ class AbstractSubject implements SplSubject
     }
 
     /**
+     * @return int
+     */
+    public function count()
+    {
+        return count($this->observers);
+    }
+
+    /**
      * @return $this|void
      */
     public function notify()
     {
+        $count = null;
+
         foreach ($this->observers as $observer) {
             $observer->update($this);
+            $count++;
         }
 
-        return $this;
+        return $count;
     }
 
     /**
@@ -55,9 +66,11 @@ class AbstractSubject implements SplSubject
     {
         if ($allowDuplicate === true || !$this->has($observer)) {
             $this->observers[] = $observer;
+        } else {
+            throw new \Exception('Cannot attached the same observer');
         }
 
-        return $this;
+        return $observer;
     }
 
     /**
@@ -68,12 +81,13 @@ class AbstractSubject implements SplSubject
     {
         for ($i = 0; $i < count($this->observers); $i++) {
             if ($this->observers[$i] === $observer) {
+                $detached = $this->observers[$i];
                 unset($this->observers[$i]);
             }
         }
         $this->observers = array_values($this->observers);
 
-        return $this;
+        return $detached;
     }
 
     /**

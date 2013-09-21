@@ -18,53 +18,72 @@ use Rf\BlogBundle\Utility\Core;
 class String
 {
     /**
-     * @param string $s
-     * @return mixed
+     * @param string $string
+     * @return string
      */
-    public static function alphanumericOnly($s)
+    public static function toNumeric($string)
     {
-        return preg_replace('/[^a-z0-9-]/i', '', $s);
+        return preg_replace('/[^0-9-]/i', '', $string);
     }
 
     /**
-     * @param string $s
-     * @return mixed
+     * @param string $string
+     * @return string
      */
-    public static function spacesToDashes($s)
+    public static function toAlpha($string)
     {
-        return str_replace(' ', '-', $s);
+        return preg_replace('/[^a-z-]/i', '', $string);
     }
 
     /**
-     * @param string $s
-     * @return mixed
+     * @param string $string
+     * @return string
      */
-    public static function dashedToSpaces($s)
+    public static function toAlphanumeric($string)
     {
-        return str_replace('-', ' ', $s);
+        return preg_replace('/[^a-z0-9-]/i', '', $string);
     }
 
     /**
-     * @param string $s
+     * @param string $string
+     * @return mixed
+     */
+    public static function spacesToDashes($string)
+    {
+        return str_replace(' ', '-', $string);
+    }
+
+    /**
+     * @param string $string
+     * @return mixed
+     */
+    public static function dashesToSpaces($string)
+    {
+        return str_replace('-', ' ', $string);
+    }
+
+    /**
+     * @param string $string
      * @param string $function
      * @return mixed
      */
-    public static function alphanumericAndDashesOnly($s, $function = 'strtolower')
+    public static function toAlphanumericAndDashes($string, $function = 'strtolower')
     {
-        $s = self::spacesToDashes($s);
-        $s = self::alphanumericOnly($s);
-        if (null !== $function) {
-            $s = Core::callFunctionOnValue($s, $function);
+        $string = self::spacesToDashes($string);
+        $string = self::toAlphanumeric($string);
+
+        if (null !== $function && function_exists($function)) {
+            $string = Core::callFunctionOnValue($string, $function);
         }
 
-        return $s;
+        return $string;
     }
 
     /**
      * @param string $phone
      * @return string
      */
-    public static function parsePhoneString($phone)
+    public static function toPhoneString($phone)
     {
         $phone =
             preg_replace(
@@ -81,6 +100,10 @@ class String
             )
         ;
 
+        if (strlen($phone) !== 10) {
+            return null;
+        }
+
         return $phone;
     }
 
@@ -88,21 +111,21 @@ class String
      * @param string $phone
      * @return string
      */
-    public static function formatPhoneString($phone)
+    public static function toHumanPhoneString($phone, $format = '+1 (%A) %P-%L')
     {
         if (strlen($phone) !== 10) {
-            return $phone;
+            return null;
         }
 
-        $formatted =
-            '+1 ('.
-            substr($phone, 0, 3).
-            ') '.
-            substr($phone, 3, 3).'-'.
-            substr($phone, 6, 4)
-        ;
+        $areaCode   = substr($phone, 0, 3);
+        $prefix     = substr($phone, 3, 3);
+        $lineNumber = substr($phone, 6, 4);
 
-        return $formatted;
+        $humanPhone = str_ireplace('%A', $areaCode,   $format    );
+        $humanPhone = str_ireplace('%P', $prefix,     $humanPhone);
+        $humanPhone = str_ireplace('%L', $lineNumber, $humanPhone);
+
+        return $humanPhone;
     }
 
     /**
@@ -118,7 +141,7 @@ class String
      * @param $title
      * @return mixed|string
      */
-    public static function titleCase($title)
+    public static function toTitleCase($title)
     {
         /* remove any HTML elements from string, these will be added back later */
         preg_match_all(
@@ -159,13 +182,13 @@ class String
                     mb_substr($title, max(0, $i-2), 1, 'UTF-8') !== ':' &&
                     !preg_match('/[\x{2014}\x{2013}] ?/u', mb_substr($title, max(0, $i-2), 2, 'UTF-8')) &&
                     preg_match('/^(a(nd?|s|t)?|b(ut|y)|en|for|i[fn]|o[fnr]|t(he|o)|vs?\.?|via)[ \-]/i', $m)
-            ) ?	(
+            ) ? (
                     /* change characters that are *always* lowercase */
                     mb_strtolower($m, 'UTF-8')
             ) : (
                     (
                             preg_match('/[\'"_{(\[‘“]/u', mb_substr($title, max(0, $i-1), 3, 'UTF-8')
-                    ) ?	(
+                    ) ? (
                             /* convert first letter within brackets and other wrappers to uppercase */
                             mb_substr($m, 0, 1, 'UTF-8').
                             mb_strtoupper(mb_substr ($m, 1, 1, 'UTF-8'), 'UTF-8').
@@ -174,16 +197,10 @@ class String
                             (
                                     preg_match('/[\])}]/', mb_substr($title, max(0, $i-1), 3, 'UTF-8')) ||
                                     preg_match('/[A-Z]+|&|\w+[._]\w+/u', mb_substr($m, 1, mb_strlen($m, 'UTF-8')-1, 'UTF-8'))
-                            ) ? (
-                                    /* do not uppercase */
-                                    $m
-                            ) : (
-                                    /* all else-failed, uppercase, no more fringe cases */
-                                    mb_strtoupper(mb_substr($m, 0, 1, 'UTF-8'), 'UTF-8').
-                                    mb_substr($m, 1, mb_strlen($m, 'UTF-8'), 'UTF-8')
-                            )
-                        )
-                    )
+                            ) ? (  $m
+                            ) : (  mb_strtoupper(mb_substr($m, 0, 1, 'UTF-8'), 'UTF-8').
+                                   mb_substr($m, 1, mb_strlen($m, 'UTF-8'), 'UTF-8')
+                            )))
                 );
 
             /* re-splice the title with the change */
