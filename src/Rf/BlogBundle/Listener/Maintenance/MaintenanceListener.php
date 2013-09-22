@@ -14,7 +14,6 @@ use Symfony\Component\DependencyInjection\ContainerAwareInterface,
     Symfony\Component\DependencyInjection\ContainerInterface,
     Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 use Symfony\Bundle\WebProfilerBundle\Controller\ProfilerController;
-use Rf\BlogBundle\Controller\MaintenanceController;
 
 /**
  * MaintenanceListener
@@ -139,10 +138,9 @@ class MaintenanceListener implements ContainerAwareInterface
      */
     protected function handleMaintenanceController(FilterControllerEvent $event)
     {
-        $event->stopPropagation();
+        //$event->stopPropagation();
 
-        $maintenanceController = new MaintenanceController();
-        $maintenanceController->setContainer($this->container);
+        $maintenanceController = $this->container->get('rf.maintenance.controller');
 
         $event->setController(
             [$maintenanceController, 'displayMaintenanceAction']

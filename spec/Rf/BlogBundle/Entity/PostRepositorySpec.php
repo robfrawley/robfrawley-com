@@ -2,8 +2,11 @@
 
 namespace spec\Rf\BlogBundle\Entity;
 
-use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
+use PhpSpec\ObjectBehavior,
+    Prophecy\Argument;
+use Doctrine\ORM\EntityManager,
+    Doctrine\ORM\Mapping\ClassMetadata,
+    Doctrine\ORM\QueryBuilder;
 
 class PostRepositorySpec extends ObjectBehavior
 {
@@ -12,10 +15,8 @@ class PostRepositorySpec extends ObjectBehavior
         $this->shouldHaveType('Rf\BlogBundle\Entity\PostRepository');
     }
 
-    function let($em, $class)
+    function let(EntityManager $em, ClassMetadata $class)
     {
-        $em->beADoubleOf('\Doctrine\ORM\EntityManager');
-        $class->beADoubleOf('\Doctrine\ORM\Mapping\ClassMetadata');
         $this->beConstructedWith($em, $class);
     }
 }

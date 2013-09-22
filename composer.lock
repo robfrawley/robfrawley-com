@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "72514c6da7e6fd8462b2135476a954bf",
+    "hash": "c36bfc357118f8f2bac140d78a691a91",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1419,20 +1419,21 @@
         },
         {
             "name": "symfony/icu",
-            "version": "v1.0.0",
+            "version": "v1.2.0",
             "target-dir": "Symfony/Component/Icu",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Icu.git",
-                "reference": "cac3fdfb111adbe590155f491594636d45129783"
+                "reference": "7299cd3d8d6602103d1ebff5d0a9917b7bc6de72"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Icu/zipball/cac3fdfb111adbe590155f491594636d45129783",
-                "reference": "cac3fdfb111adbe590155f491594636d45129783",
+                "url": "https://api.github.com/repos/symfony/Icu/zipball/7299cd3d8d6602103d1ebff5d0a9917b7bc6de72",
+                "reference": "7299cd3d8d6602103d1ebff5d0a9917b7bc6de72",
                 "shasum": ""
             },
             "require": {
+                "lib-icu": ">=4.4",
                 "php": ">=5.3.3",
                 "symfony/intl": "~2.3"
             },
@@ -1462,7 +1463,7 @@
                 "icu",
                 "intl"
             ],
-            "time": "2013-06-03 18:32:07"
+            "time": "2013-06-03 18:32:58"
         },
         {
             "name": "symfony/monolog-bundle",
@@ -1939,12 +1940,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/atoum/atoum.git",
-                "reference": "d5b10e193715f64f77293c44632e82aa58918caa"
+                "reference": "f77bf4ab71d38667675c2c08392af69c123a819e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/atoum/atoum/zipball/d5b10e193715f64f77293c44632e82aa58918caa",
-                "reference": "d5b10e193715f64f77293c44632e82aa58918caa",
+                "url": "https://api.github.com/repos/atoum/atoum/zipball/f77bf4ab71d38667675c2c08392af69c123a819e",
+                "reference": "f77bf4ab71d38667675c2c08392af69c123a819e",
                 "shasum": ""
             },
             "require": {
@@ -2005,7 +2006,7 @@
                 "test",
                 "unit testing"
             ],
-            "time": "2013-09-17 15:21:19"
+            "time": "2013-09-19 15:27:08"
         },
         {
             "name": "atoum/atoum-bundle",
@@ -2014,12 +2015,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/atoum/AtoumBundle.git",
-                "reference": "a7607cd2b02d09b7557bd86e26abb2f09826827f"
+                "reference": "30425a7a3caf2714558dd1c27d8b95b177b721b2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/atoum/AtoumBundle/zipball/a7607cd2b02d09b7557bd86e26abb2f09826827f",
-                "reference": "a7607cd2b02d09b7557bd86e26abb2f09826827f",
+                "url": "https://api.github.com/repos/atoum/AtoumBundle/zipball/30425a7a3caf2714558dd1c27d8b95b177b721b2",
+                "reference": "30425a7a3caf2714558dd1c27d8b95b177b721b2",
                 "shasum": ""
             },
             "require": {
@@ -2062,7 +2063,7 @@
                 "test",
                 "unit testing"
             ],
-            "time": "2013-09-13 10:16:12"
+            "time": "2013-09-20 15:29:14"
         },
         {
             "name": "behat/behat",
@@ -2741,17 +2742,17 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "f0027895f8facc0227b79b4725b9c97640c6e35e"
+                "reference": "a40249a84ea09f10592fb6c9d63cf59a7e0a576f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/f0027895f8facc0227b79b4725b9c97640c6e35e",
-                "reference": "f0027895f8facc0227b79b4725b9c97640c6e35e",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/a40249a84ea09f10592fb6c9d63cf59a7e0a576f",
+                "reference": "a40249a84ea09f10592fb6c9d63cf59a7e0a576f",
                 "shasum": ""
             },
             "require": {
                 "ext-curl": "*",
-                "php": ">=5.3.2",
+                "php": ">=5.3.3",
                 "symfony/event-dispatcher": ">=2.1"
             },
             "replace": {
@@ -2825,44 +2826,7 @@
                 "rest",
                 "web service"
             ],
-            "time": "2013-09-16 19:03:34"
-        },
-        {
-            "name": "henrikbjorn/phpspec-code-coverage",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/henrikbjorn/PhpSpecCodeCoverageExtension.git",
-                "reference": "2a2dad064ecb1e8e7bd54fcd82089d4cddd6dfe9"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/henrikbjorn/PhpSpecCodeCoverageExtension/zipball/2a2dad064ecb1e8e7bd54fcd82089d4cddd6dfe9",
-                "reference": "2a2dad064ecb1e8e7bd54fcd82089d4cddd6dfe9",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.3",
-                "phpspec/phpspec": "dev-master",
-                "phpunit/php-code-coverage": "~1.2"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "PhpSpec\\Extension\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "description": "Integrates CodeCoverage with PhpSpec",
-            "time": "2013-09-13 09:10:20"
+            "time": "2013-09-22 19:55:57"
         },
         {
             "name": "instaclick/php-webdriver",
@@ -3663,6 +3627,44 @@
             "time": "2013-07-25 11:22:39"
         },
         {
+            "name": "scribenet/phpspec-code-coverage",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/scribenet/phpspec-code-coverage.git",
+                "reference": "346f314a652056cd87e030c3a16d3b92be5efaf1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/scribenet/phpspec-code-coverage/zipball/346f314a652056cd87e030c3a16d3b92be5efaf1",
+                "reference": "346f314a652056cd87e030c3a16d3b92be5efaf1",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "phpspec/phpspec": ">=2.0@dev",
+                "phpunit/php-code-coverage": "~1.2",
+                "phpunit/phpunit": ">=3.7,<3.8"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "PhpSpec\\Extension\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Integrates CodeCoverage with PhpSpec",
+            "time": "2013-09-22 18:04:18"
+        },
+        {
             "name": "whatthejeff/fab",
             "version": "v1.0.0",
             "source": {
@@ -3782,14 +3784,14 @@
         "behat/mink-goutte-driver": 20,
         "behat/mink-zombie-driver": 20,
         "phpspec/phpspec": 20,
-        "henrikbjorn/phpspec-code-coverage": 20,
+        "scribenet/phpspec-code-coverage": 20,
         "satooshi/php-coveralls": 20,
         "atoum/atoum": 20,
         "atoum/atoum-bundle": 20,
         "guzzle/guzzle": 20
     },
     "platform": {
-        "php": ">=5.4.0"
+        "php": ">=5.5.0"
     },
     "platform-dev": [
 

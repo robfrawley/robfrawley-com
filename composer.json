@@ -7,7 +7,7 @@
         "psr-0": { "": "src/" }
     },
     "require": {
-        "php":                                  ">=5.4.0",
+        "php":                                  ">=5.5.0",
         "symfony/symfony":                      ">=2.3.4,<2.4",
         "doctrine/orm":                         ">=2.2.3,<2.4-dev",
         "doctrine/doctrine-bundle":             ">=1.2,<2.0",
@@ -42,7 +42,7 @@
         "behat/mink-zombie-driver":             "@dev",
         "phpunit/phpunit":                      ">=3.7,<3.8",
         "phpspec/phpspec":                      ">=2.0@dev",
-        "henrikbjorn/phpspec-code-coverage":    ">=1.0@dev",
+        "scribenet/phpspec-code-coverage":      ">=1.0@dev",
         "whatthejeff/nyancat-scoreboard":       ">=1.1",
         "satooshi/php-coveralls":               "dev-master",
         "atoum/atoum":                          "dev-master",

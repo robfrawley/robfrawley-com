@@ -1,4 +1,4 @@
 service_name:     travis-ci
 repo_token:       0C0teLiqbzLFctzoa2jk6fgGLy8s1sTWb
 coverage_clover:  coverage
-json_path:        app/config/phpcov.json
+json_path:        phpcov.json
