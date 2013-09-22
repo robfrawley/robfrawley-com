@@ -12,7 +12,6 @@ namespace Rf\BlogBundle\Templating\Extension;
 
 use Symfony\Component\DependencyInjection\ContainerInterface,
     Symfony\Component\DependencyInjection\ContainerAwareInterface;
-use Rf\BlogBundle\Utility\Container\ContainerAwareTrait;
 use Twig_SimpleFilter;
 
 /**
@@ -20,16 +19,12 @@ use Twig_SimpleFilter;
  */
 class SwimExtension extends AbstractExtension implements ContainerAwareInterface
 {
-    use ContainerAwareTrait {
-        ContainerAwareTrait::__construct as __traitConstruct;
-    }
-
     /**
      * @param $container ContainerInterface
      */
     public function __construct(ContainerInterface $container = null)
     {
-        $this->__traitConstruct($container);
+        parent::__construct($container);
     }
 
     /**

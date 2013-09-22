@@ -18,14 +18,14 @@ use Doctrine\ORM\EntityRepository;
 class PostRepository extends EntityRepository
 {
     public function findLatest($limit=2)
-    {
+    {   /*
         $q = $this
             ->createQueryBuilder('p')
-            //->orderBy('p.posted', 'DESC')
-            //->setMaxResults($limit)
-            //->getQuery()
+            ->orderBy('p.posted', 'DESC')
+            ->setMaxResults($limit)
+            ->getQuery()
         ;
-return;
+        */
         try {
             $entries = $q->getResult();
         }

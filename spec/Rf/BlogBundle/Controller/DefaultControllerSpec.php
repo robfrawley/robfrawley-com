@@ -6,7 +6,9 @@ use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Symfony\Component\DependencyInjection\ContainerInterface,
     Symfony\Bundle\FrameworkBundle\Templating\EngineInterface,
-    Symfony\Component\HttpFoundation\Response;
+    Symfony\Component\HttpFoundation\Response,
+    Symfony\Component\HttpFoundation\Request,
+    Symfony\Component\HttpFoundation\Session\Session;
 use Doctrine\Common\Persistence\ManagerRegistry,
     Doctrine\Common\Persistence\ObjectManager,
     Doctrine\Common\Persistence\ObjectRepository;
@@ -19,8 +21,40 @@ class DefaultControllerSpec extends ObjectBehavior
         $this->shouldHaveType('Rf\BlogBundle\Controller\DefaultController');
     }
 
-    function let(ContainerInterface $container, ManagerRegistry $registry, ObjectManager $manager, PostRepository $repository, EngineInterface $templating)
+    function let(ContainerInterface $container, Request $request, Session $session, ManagerRegistry $registry, ObjectManager $manager, PostRepository $repository, EngineInterface $templating)
     {
+        $request
+            ->getSession()
+            ->willReturn($session)
+        ;
+
+        $container
+            ->has('request')
+            ->willReturn(true)
+        ;
+        $container
+            ->get('request')
+            ->willReturn($request)
+        ;
+
+        $container
+            ->has('templating')
+            ->willReturn(true)
+        ;
+        $container
+            ->get('templating')
+            ->willReturn($templating)
+        ;
+
+        $container
+            ->has('templating')
+            ->willReturn(true)
+        ;
+        $container
+            ->get('templating')
+            ->willReturn($templating)
+        ;
+
         $container
             ->has('doctrine')
             ->willReturn(true)
@@ -29,6 +63,7 @@ class DefaultControllerSpec extends ObjectBehavior
             ->get('doctrine')
             ->willReturn($registry)
         ;
+
         $registry
             ->getManager()
             ->willReturn($manager)
@@ -36,10 +71,6 @@ class DefaultControllerSpec extends ObjectBehavior
         $manager
             ->getRepository('RfBlogBundle:Post')
             ->willReturn($repository)
-        ;
-        $container
-            ->get('templating')
-            ->willReturn($templating)
         ;
 
         $this->setContainer($container);
@@ -64,5 +95,29 @@ class DefaultControllerSpec extends ObjectBehavior
         $response->shouldHaveType(
             'Symfony\Component\HttpFoundation\Response'
         );
+    }
+
+    function it_can_get_request_service(Request $request)
+    {
+        $this
+            ->getServices(['request'])
+            ->shouldReturn([$request])
+        ;
+    }
+
+    function it_can_get_session_service(Session $session)
+    {
+        $this
+            ->getServices(['session'])
+            ->shouldReturn([$session])
+        ;
+    }
+
+    function it_can_get_templating_service_from_container(EngineInterface $templating)
+    {
+        $this
+            ->getServices(['templating'])
+            ->shouldReturn([$templating])
+        ;
     }
 }

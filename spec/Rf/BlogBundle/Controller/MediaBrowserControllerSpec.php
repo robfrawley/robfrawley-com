@@ -6,7 +6,8 @@ use PhpSpec\ObjectBehavior,
     Prophecy\Argument;
 use Symfony\Component\DependencyInjection\ContainerInterface,
     Symfony\Bundle\FrameworkBundle\Templating\EngineInterface,
-    Symfony\Component\HttpFoundation\Response;
+    Symfony\Component\HttpFoundation\Response,
+    Symfony\Component\HttpFoundation\RedirectResponse;
 
 class MediaBrowserControllerSpec extends ObjectBehavior
 {
@@ -44,5 +45,19 @@ class MediaBrowserControllerSpec extends ObjectBehavior
         $response->shouldHaveType(
             'Symfony\Component\HttpFoundation\Response'
         );
+    }
+
+    function it_can_explore_a_root()
+    {
+        $this->setRoot(__DIR__.'/../');
+        $this->exploreRoot();
+    }
+
+    function it_should_redirect_to_download()
+    {
+        $this
+            ->naDownloadAction('a/path')
+            ->shouldHaveType('Symfony\Component\HttpFoundation\RedirectResponse')
+        ;
     }
 }

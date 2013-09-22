@@ -64,7 +64,7 @@ class MaintenanceListener implements ContainerAwareInterface
         
         $controller = $event->getController();
 
-        if (!is_array($controller)) {
+        if (!is_array($controller) || !count($controller) > 0) {
             return;
         }
 
@@ -84,7 +84,6 @@ class MaintenanceListener implements ContainerAwareInterface
             case 'selection':
             default:
                 $this->determineMaintenanceState($event);
-                break;
         }
     }
 
@@ -119,17 +118,22 @@ class MaintenanceListener implements ContainerAwareInterface
         ;
         preg_match('#([^\\\]*)\\\([^\\\]*)\\\Controller\\\([^:]*)::(.*)#i', $controller, $matches);
 
-        $request->attributes->set('namespace',  $matches[1]);
-        $request->attributes->set('bundle',     $matches[2]);
-        $request->attributes->set('controller', $matches[3]);
-        $request->attributes->set('action',     $matches[4]);
+        $namespace  = isset($matches[1]) ? $matches[1] : null;
+        $bundle     = isset($matches[2]) ? $matches[2] : null;
+        $controller = isset($matches[3]) ? $matches[3] : null;
+        $action     = isset($matches[4]) ? $matches[4] : null;
+
+        $request->attributes->set('namespace',  $namespace );
+        $request->attributes->set('bundle',     $bundle    );
+        $request->attributes->set('controller', $controller);
+        $request->attributes->set('action',     $action    );
 
         return [
-            $matches[1],
-            $matches[2],
-            $matches[3],
-            $matches[4],
-            $matches[1] . $matches[2]
+            $namespace,
+            $bundle,
+            $controller,
+            $action,
+            $namespace.$bundle
         ];
     }
 
@@ -138,7 +142,7 @@ class MaintenanceListener implements ContainerAwareInterface
      */
     protected function handleMaintenanceController(FilterControllerEvent $event)
     {
-        //$event->stopPropagation();
+        $event->stopPropagation();
 
         $maintenanceController = $this->container->get('rf.maintenance.controller');
 

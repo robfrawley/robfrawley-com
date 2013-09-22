@@ -13,6 +13,7 @@ namespace Rf\BlogBundle\Templating\Extension;
 
 use Symfony\Component\DependencyInjection\ContainerInterface,
     Symfony\Component\DependencyInjection\ContainerAwareInterface;
+use Rf\BlogBundle\Utility\Container\ContainerAwareTrait;
 use Twig_Extension;
 
 /**
@@ -20,20 +21,7 @@ use Twig_Extension;
  */
 abstract class AbstractExtension extends Twig_Extension implements ContainerAwareInterface
 {
-    /**
-     * @var ContainerInterface
-     */
-    private $container;
-
-    /**
-     * @param ContainerInterface $container
-     * @return $this
-     */
-    public function setContainer(ContainerInterface $container = null)
-    {
-        $this->container = $container;
-        return $this;
-    }
+    use ContainerAwareTrait;
 
     /**
      * @return string
@@ -41,13 +29,5 @@ abstract class AbstractExtension extends Twig_Extension implements ContainerAwar
     public function getName()
     {
         return get_called_class();
-    }
-
-    /**
-     * @return array
-     */
-    public function getFunctions()
-    {
-        return [];
     }
 }

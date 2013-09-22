@@ -2,8 +2,8 @@
 
 namespace spec\Rf\BlogBundle\DependencyInjection;
 
-use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
+use PhpSpec\ObjectBehavior,
+	Prophecy\Argument;
 
 class ConfigurationSpec extends ObjectBehavior
 {

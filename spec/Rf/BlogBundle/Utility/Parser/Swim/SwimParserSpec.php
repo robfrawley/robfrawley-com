@@ -87,9 +87,13 @@ class SwimParserSpec extends ObjectBehavior
     		->setContent()
     		->shouldReturn($this)
     	;
-    	$this
-    		->render()
-    		->shouldReturn(null)
-    	;
+        $this
+            ->render()
+            ->shouldReturn(null)
+        ;
+        $this
+            ->render('with content passed')
+            ->shouldReturn(null)
+        ;
     }
 }

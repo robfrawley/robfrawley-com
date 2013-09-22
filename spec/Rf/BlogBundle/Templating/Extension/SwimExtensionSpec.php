@@ -43,4 +43,9 @@ class SwimExtensionSpec extends ObjectBehavior
     		->shouldBeArray()
     	;
     }
+
+    function it_can_get_its_name()
+    {
+        $this->getName()->shouldReturn('Rf\BlogBundle\Templating\Extension\SwimExtension');
+    }
 }
